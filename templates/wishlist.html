@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html class="no-js" lang="zxx">
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="% static 'assets/img/favicon.png">
+      <!-- CSS here -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+      <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <style>
+       
+       
+          
+    </style>
+</head>
+<body>
+    {% include "includes/header.html" %}
+    <div class="container">
+        <h1>My Wishlist</h1>
+        <ul>
+            {% for item in wishlist_items %}
+                <li data-product-id="{{ item.product_variant_id }}">
+                    <strong>{{ item.product_variant_name }}</strong><br>
+                    <strong>{{ item.product_variant_cost }}</strong><br>
+                    {% if item.product_variant_image %}
+                        <img src="{{ item.product_variant_image.url }}" alt="Product Image" onclick="updateMainImage('{{ item.product_variant_image.url }}')">
+                    {% endif %}
+                    <!-- Delete button -->
+                 
+                    <button onclick="deleteFromWishlist('{{ item.product_variant_id }}')" class="delete-btn">
+                        <i class="fas fa-trash-alt"></i> <!-- Font Awesome delete icon -->
+                    </button>
+                                    </li>
+            {% empty %}
+                <li class="empty-message">No items in your wishlist</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Include Font Awesome script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <script>
+        function deleteFromWishlist(productVariantId) {
+            // Send a DELETE request to the server
+            fetch(`/wishlist/delete/${productVariantId}/`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // If the request was successful, remove the item from the DOM
+                    const listItem = document.querySelector(`li[data-product-id="${productVariantId}"]`);
+                    listItem.remove();
+                } else {
+                    // If the request was not successful, handle the error
+                    console.error('Failed to delete wishlist item');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+        // Function to get CSRF token from cookies
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Check if the cookie name matches the CSRF token cookie name
+                    if (cookie.startsWith(name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        </script>
+        
+
+            <!-- footer-start -->
+    {% include 'includes/footer.html' %}
+    <!-- footer-end -->
+
+
+</body>
+</html>

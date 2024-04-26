@@ -1,0 +1,827 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Page</title>
+    
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+
+            background-color: #f0f0f0; /* Set background color for the body */
+        }
+
+        header {
+            background-color: #000306; /* Set background color for the header */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: #fff; /* Set text color for the header */
+        }
+
+        .logo img {
+            max-width: 80px;
+        }
+
+        .options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 20px;
+        }
+
+        .options a {
+            margin: 0 10px;
+            color: #fff; /* Set text color for the options */
+            text-decoration: none;
+        }
+
+        .login-btn, .start-selling-btn {
+            padding: 10px 20px;
+            border: none;
+            background-color: gold; /* Different color for the buttons */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover, .start-selling-btn:hover {
+            background-color: goldenrod; /* Darker color on hover */
+        }
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #fff; /* Set background color for the content */
+            color: #000; /* Set text color for the content */
+            margin: 50px auto;
+            max-width: 1200px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .content img {
+            width: 100%; /* Set width to fill the container */
+            max-width: 500px; /* Set maximum width for the image */
+            border-radius: 10px;
+        }
+
+        .info {
+            flex: 1; /* Take remaining space */
+            padding: 0 20px; /* Add padding to separate content from edges */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align items to the left */
+            justify-content: center; /* Center items vertically */
+        }
+
+        .big-heading {
+            font-size: 30px; /* Increased font size */
+            margin-bottom: 20px;
+            color: #000408; /* Changed color */
+            font-weight: bold; /* Added font weight */
+        }
+
+        .small-heading {
+            font-size: 20px; /* Increased font size */
+            margin-bottom: 20px;
+            color: #555; /* Changed color */
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            
+            overflow: hidden; /* Hide overflow */
+        
+        }
+
+        .search-bar input[type="text"] {
+            padding: 10px;
+            width: 250px; /* Reduced width */
+            
+            font-size: 16px;
+        
+            color: #555; /* Text color */
+            outline: none; /* Remove outline */
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            border: yellow;
+            background-color: goldenrod; /* Changed color */
+            color: #fff;
+            text-decoration: none;
+            outline: none !important; /* Remove outline */
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color:gold; /* Darker color on hover */
+        }
+
+        .login-btn {
+            margin-right: 10px; /* Added margin to separate buttons */
+        }
+
+        .circle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Align items vertically */
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .circle {
+            width: 80px;
+            height: 100px;
+            background-color: black;
+            border-radius: 50%;
+            color: #fff;
+            font-size: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added box shadow */
+            transition: transform 0.3s ease;
+        }
+
+        .circle:hover {
+            transform: scale(1.1); /* Increase size on hover */
+        }
+
+        .circle-label {
+            text-align: center;
+        }
+
+        .info-box {
+            background:linear-gradient(white,gold) ;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added box shadow */
+            width: 200px;
+            height: 130px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px); /* Move up on hover */
+        }
+
+        .info-box .circle {
+            margin-top: -50px; /* Adjusted margin to partially overlap */
+        }
+        .exclusive-offer {
+    padding: 50px;
+}
+
+.offer-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.offer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    flex: 1;
+}
+
+.offer-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.offer-title {
+    font-size: 24px;
+    margin-left: 10px;
+    color: #333;
+}
+
+.offer-details {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.offer-subtitle {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+    .offer-container {
+        flex-direction: column; /* Stack offers vertically in mobile view */
+        align-items: stretch;
+    }
+    
+    .offer {
+        margin-right: 0; /* Remove right margin in mobile view */
+        margin-bottom: 20px; /* Add vertical margin between offers */
+    }
+    
+    .offer:not(:last-child) {
+        margin-bottom: 20px; /* Add vertical margin between offers */
+    }
+    
+    .exclusive-offer {
+        border-bottom: 2px solid #ccc; /* Add border to the bottom of the section */
+        margin-bottom: 20px; /* Add margin between heading and offers in mobile view */
+    }
+}
+
+        .scrolling-banners {
+            margin-top: 20px; /* Adjust margin as needed */
+            overflow: hidden; /* Hide overflow */
+        }
+        .head {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .head1 {
+            font-size: 24px;
+            color: #004286;
+            margin-bottom: 15px;
+            padding-top: 50px;
+        }
+
+        .head2 {
+            font-size: 16px;
+            color: #555;
+            padding: 15px;
+        }
+
+        .benefits {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 0 -15px; /* Negative margin to create space between columns */
+        }
+
+        .benefit {
+            width: calc(25% - 30px); /* Adjust column width */
+            margin: 0 15px; /* Adjust column margin */
+            padding: 20px;
+            max-width: 550px;
+            background: linear-gradient(white,goldenrod);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+            
+        }
+
+        .benefit .icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #9b0558; /* Icon color */
+        }
+
+        .benefit .title {
+            font-size: 18px;
+            color: #004286; /* Title color */
+            margin-bottom: 10px;
+        }
+
+        .benefit .description {
+            font-size: 14px;
+            color: #555; /* Description color */
+        }
+
+        @media (max-width: 768px) {
+            .benefit {
+                width: calc(50% - 30px);
+            }
+        }
+        .benefits {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.benefit {
+    flex: 1 1 50%; /* Two benefits per row */
+    margin: 10px; /* Adjust margin as needed */
+    
+
+}
+
+.benefit .icon {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.benefit .title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.benefit .description {
+    color: #666;
+}
+.section-heading {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+@media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content img {
+                max-width: 90%;
+                margin-top: 20px;
+            }
+
+            .info {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .search-bar {
+                margin-top: 20px;
+                justify-content: center;
+            }
+
+            .circle-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .circle {
+                margin: 10px 0;
+            }
+
+            .exclusive-offer {
+                padding: 20px;
+            }
+
+            .offer-container {
+                flex-direction: column;
+            }
+
+            .offer {
+                margin-bottom: 20px;
+            }
+
+            .scrolling-banners {
+                display: none; /* Hide scrolling banners on smaller screens */
+            }
+
+            .head {
+                padding: 20px;
+            }
+
+            .benefits {
+                padding: 20px;
+            }
+
+            .benefit {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+        .toggle-btn {
+            background-color: transparent;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin: 10px;
+            display: none; /* Initially hide the toggle button */
+        }
+
+        /* Media query for mobile view */
+        @media (max-width: 768px) {
+            .toggle-btn {
+                display: block; /* Show the toggle button only in mobile view */
+            }
+
+            .options {
+                display: none; /* Hide the header options in mobile view by default */
+                flex-direction: column; /* Display options vertically */
+                align-items: flex-start; /* Align options to the left */
+            }
+
+            .options a {
+                margin: 10px 0; /* Add vertical spacing between options */
+            }
+        }
+        .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.service {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.icon {
+    font-size: 48px;
+    color: #ff6f61;
+    margin-right: 20px;
+}
+
+.service div {
+    text-align: left;
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.service:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.service:hover .icon {
+    color: #ff6f61;
+}
+.merchant-container {
+  max-width: 95%;
+  margin: 0 auto;
+  padding: 2px;
+  box-shadow: 0 0 0 2px goldenrod; /* Add golden margin line */
+}
+
+.merchant-steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.merchant-step {
+  flex-basis: calc(20% - 10px); /* Adjust width for desktop */
+  margin-right: 20px; /* Add horizontal margin between steps for desktop */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative; /* Add relative positioning */
+  font-style: normal;
+}
+
+.merchant-step:not(:last-child) {
+  margin-right: 20px; /* Add horizontal margin between steps */
+}
+
+.merchant-step-number {
+  background-color: goldenrod;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.merchant-step-content h2 {
+  color: #1e84eb;
+  margin-bottom: 10px;
+}
+
+.merchant-step-content p {
+  color: #555;
+}
+
+/* Media query for mobile view */
+@media (max-width: 768px) {
+  .merchant-steps {
+    flex-wrap: wrap; /* Allow wrapping for mobile view */
+    justify-content: center; /* Center steps in mobile view */
+  }
+
+  .merchant-step {
+    flex-basis: calc(45% - 10px); /* Adjust width for mobile view */
+    margin-right: 0; /* Remove horizontal margin for mobile view */
+    margin-bottom: 20px; /* Add vertical margin between steps for mobile view */
+  }
+}
+.qtip-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: lightcoral;
+            
+        }
+        .qtip-text {
+            color:whitesmoke;
+        }
+        .qtip-mail-icon {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background-color: black;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 10px;
+            
+        }
+        .qtip-mail-icon i {
+            font-size: 24px;
+            color:gold; /* Blue color for the mail symbol *
+
+        }
+        .qtip-mail a {
+            color: white; /* Blue link color */
+            text-decoration: none;
+        }
+        .qtip-mail a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        
+        <div class="logo">
+            <img src="{% static 'logo.jpeg' %}" alt="Logo">
+        </div>
+        <button class="toggle-btn" onclick="toggleOptions()">
+            <i class="fas fa-bars"></i> <!-- Font Awesome bars icon for toggle button -->
+        </button>
+
+        <div class="options">
+            <a href="#">Sell Online</a>
+            <a href="#">Grow Business</a>
+            <a href="#">How it works?</a>
+            <a href="#">Seller Policies</a>
+            <a href="#">Seller Benefits</a>
+        </div>
+        <a href="#" class="login-btn">Login</a>
+     
+
+<a href="{% url 'startselling' %}" class="start-selling-btn">Start Selling</a>
+
+    </header>
+
+    <div class="content">
+        <div class="info">
+            <div class="big-heading">Grow Your Business with QTipStore</div>
+            <div class="small-heading">Join our community of sellers and start selling today.</div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search...">
+                <button type="submit">Search</button>
+            </div>
+        </div>
+        <img src="{% static 'banner3.jpeg' %}" alt="Image">
+    </div>
+
+    <div class="circle-container">
+        <div class="info-box">
+            <div class="circle">
+                <i class="fas fa-users"></i>
+            </div>
+            <p>45 crore+ QTipStore customers</p>
+        </div>
+        <div class="info-box">
+            <div class="circle">
+                <i class="fas fa-money-check-alt"></i>
+            </div>
+            <p>7* days secure & regular payments</p>
+        </div>
+        <div class="info-box">
+            <div class="circle">
+                <i class="fas fa-hand-holding-usd"></i>
+            </div>
+            <p>Low cost of doing business</p>
+        </div>
+        <div class="info-box">
+            <div class="circle">
+                <i class="fas fa-hands-helping"></i>
+            </div>
+            <p>One-click Seller Support</p>
+        </div>
+        <div class="info-box">
+            <div class="circle">
+                <i class="fas fa-calendar-alt"></i>
+            </div>
+            <p>Access to QTipStore Events & more</p>
+        </div>
+    </div>
+    <section class="exclusive-offer">
+        <h2 class="section-heading" style="margin-right: 30px;">Exclusive Offers!</h2>
+        <div class="offer-container">
+            <h2 class="section-heading-mobile" style="display: none;">Exclusive Offers!</h2>
+            <div class="offer">
+                <div class="offer-header">
+                    <h3 class="offer-heading">Free Catalog Visibility</h3>
+                    <i class="icon fas fa-bullhorn" style="color: #ee1d40; margin-left: 20px; font-size: xx-large;"></i>
+                </div>
+                <div class="offer-details">
+                    Run advertisements for your catalogs to increase the visibility of your products and get more orders. Currently, not available for sellers who don't have a Regular GSTIN.
+                </div>
+                <div class="offer-subtitle">Hurry! Offer ends soon.</div>
+            </div>
+            <div class="offer">
+                <div class="offer-header">
+                    <h3 class="offer-heading">No Order Cancellation Charges</h3>
+                    <i class="icon fas fa-hand-holding-usd" style="color: #e63150; margin-left: 20px; font-size: xx-large;"></i>
+                </div>
+                <div class="offer-details">
+                    Cancel orders that you can’t fulfill for unforeseen reasons without worrying about penalties.
+                </div>
+                <div class="offer-subtitle">Grab your deal now!</div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <div class="scrolling-banners">
+        <marquee behavior="scroll" direction="left" scrollamount="10">
+            <!-- Replace the paths with the actual paths of your images -->
+            <img src="{% static 'banner1.jpeg' %}" alt="Banner 1">
+            <img src="{% static 'banner2.jpeg' %}" alt="Banner 2">
+            <img src="{% static 'banner1.jpeg' %}" alt="Banner 3">
+            <img src="{% static 'banner2.jpeg' %}" alt="Banner 4">
+            <!-- Duplicate the images for continuous scrolling -->
+            <img src="{% static 'banner1.jpeg' %}" alt="Banner 5">
+            <img src="{% static 'banner2.jpeg' %}" alt="Banner 6">
+            <img src="{% static 'banner1.jpeg' %}" alt="Banner 7">
+            <img src="{% static 'banner2.jpeg' %}" alt="Banner 8">
+            <!-- Add more duplicates as needed -->
+        </marquee>
+    </div>
+    <div class="head" style="padding: 20px;">
+        <div class="head1">Why People Choose QTipStore?</div>
+        <div class="head2">QTipStore offers a large customer base, seamless order management, secure transactions, and various seller-friendly features like easy catalog management and marketing tools. Additionally, QTipStore provides insights and analytics to help merchants optimize their sales strategies and grow their businesses efficiently.</div>
+    </div>
+    
+    <div class="benefits" style="padding: 20px;">
+        <div class="benefit">
+            <div class="icon"><i class="fas fa-percentage"></i></div>
+            <div class="title">0% Commission Fee</div>
+            <div class="description">Suppliers selling on QTipStore keep 100% of their profit by not paying any commission.</div>
+        </div>
+    
+        <div class="benefit">
+            <div class="icon"><i class="fas fa-exclamation-circle"></i></div>
+            <div class="title">0 Penalty Charges</div>
+            <div class="description">Sell online without the fear of order cancellation charges with 0 penalty for late dispatch or order cancellations.</div>
+        </div>
+    
+        <div class="benefit">
+            <div class="icon"><i class="fas fa-chart-line"></i></div>
+            <div class="title">Growth for Every Supplier</div>
+            <div class="description">From small to large and unbranded to branded, QTipStore fuels growth for all suppliers.</div>
+        </div>
+    
+        <div class="benefit">
+            <div class="icon"><i class="fas fa-handshake"></i></div>
+            <div class="title">Ease of Doing Business</div>
+            <div class="description">Enjoy easy product listing, lowest cost shipping, and a 7-day payment cycle from the delivery date on QTipStore.</div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Grow Your Business with Us</h1>
+        <div class="service">
+            <i class="fas fa-chart-line icon"></i>
+            <div>
+                <h2>Business Insights</h2>
+                <p>Gain valuable knowledge and analysis to propel your business forward, understand market trends, consumer behavior, and optimize your strategies for success.</p>
+            </div>
+        </div>
+        <div class="service">
+            <i class="fas fa-shipping-fast icon"></i>
+            <div>
+                <h2>Next-Day Dispatch</h2>
+                <p>Ensure prompt order processing and shipping with our next-day dispatch program, providing your customers with speedy delivery and enhancing their satisfaction.</p>
+            </div>
+        </div>
+        <div class="service">
+            <i class="fas fa-truck icon"></i>
+            <div>
+                <h2>Affordable Shipping</h2>
+                <p>Enjoy cost-effective shipping solutions that help you save money while delivering your products to customers swiftly and reliably, making shopping with us even more attractive.</p>
+            </div>
+        </div>
+        <div class="service">
+            <i class="fas fa-bullhorn icon"></i>
+            <div>
+                <h2>Growth Ads</h2>
+                <p>Accelerate your business expansion with targeted advertising campaigns tailored to reach your audience effectively, boosting visibility, engagement, and conversions for your products or services.</p>
+            </div>
+        </div>
+    </div>
+    <div class="merchant-container">
+        <div style="font-weight: bold; font-size: xx-large; padding: 30px; text-align: center; ">How its Work?</div>
+        <div class="merchant-steps">
+          <div class="merchant-step">
+            <div class="merchant-step-number">1</div>
+            <div class="merchant-step-content">
+              <h2>Create Account</h2>
+              <p>Sign up easily with just a few steps. Create your merchant account to start selling. Provide basic information to get started.</p>
+            </div>
+          </div>
+          
+          <div class="merchant-step">
+            <div class="merchant-step-number">2</div>
+            <div class="merchant-step-content">
+              <h2>List Products</h2>
+              <p>Add your products with detailed descriptions. Upload images to showcase your products effectively. Categorize your products for easy navigation.</p>
+            </div>
+          </div>
+          
+          <div class="merchant-step">
+            <div class="merchant-step-number">3</div>
+            <div class="merchant-step-content">
+              <h2>Get Orders</h2>
+              <p>View and track incoming orders in real-time. Manage order status and update customers accordingly. Generate invoices and shipping labels seamlessly.</p>
+            </div>
+          </div>
+          
+          <div class="merchant-step">
+            <div class="merchant-step-number">4</div>
+            <div class="merchant-step-content">
+              <h2>Lowest Cost Shipping</h2>
+              <p>Access discounted shipping rates from trusted carriers. Choose from various shipping options tailored to your needs. Integrate with fulfillment services for efficient order processing.</p>
+            </div>
+          </div>
+          
+          <div class="merchant-step">
+            <div class="merchant-step-number">5</div>
+            <div class="merchant-step-content">
+              <h2>Receive Payments</h2>
+              <p>Accept secure payments from multiple channels. Get paid directly to your preferred bank account. Receive payouts on a regular schedule for hassle-free transactions.</p>
+            </div>
+          </div>
+        </div>
+      </div><br></br>
+      <div class="qtip-container">
+        <p class="qtip-text">qtipStore offers supplier support to help you with any questions or issues before and after you start selling online. our team is there to assist you every step of the way.</p>
+        <div class="qtip-mail">
+            <!-- Mail Icon -->
+            <div class="qtip-mail-icon">
+                <i class="fas fa-envelope" ></i> <!-- Font Awesome mail symbol -->
+            </div>
+            <!-- Additional Mail Contact -->
+            <p>Contact us at <a href="mailto:youremail@example.com">info@vindusenvironment.in</a></p>
+        </div>
+    </div>
+
+          
+    <script>
+        function toggleOptions() {
+            var options = document.querySelector('.options');
+            if (options.style.display === 'none') {
+                options.style.display = 'flex';
+            } else {
+                options.style.display = 'none';
+            }
+        }
+    </script>
+    </body>
+</html>

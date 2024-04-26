@@ -1,0 +1,181 @@
+{% load product_tags %}
+
+{% for i in products %}
+
+<!-- Include toastr library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<!-- Include toastr CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+
+<style>
+
+    .original-price {
+        text-decoration: line-through; /* Apply line-through style to the text */
+      font-size:15px;
+      margin-left:20px;
+       
+    }
+
+    .price{
+        font-size:18px;
+       display:flex;
+    }
+    .prices{
+        color:black;
+      
+      
+    }
+    .discount-info{
+        color:green;
+        font-size:10px;
+    }
+
+</style>
+<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+    <div class="product__item product__item-d"
+        style="width: auto;height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+        <div class="product__thumb fix" style="gap:2px">
+            <div class="product-image w-img">
+                <a href="{% url 'product_detail' slug=i.slug product_id=i.id %}">
+                    <img src="/media/{{i.image}}" alt="product">
+                </a>
+            </div>
+            <div class="colors-container" style="display:flex;gap:2px;width:100%;justify-content:center;margin-top:5px">
+    {% for variant in i.variants_set.all|slice:":4" %}
+        {% if variant.color %}
+            <div style="border:solid 0.5px black;border-radius:50%;width:1.2rem;height:1.2rem">
+                <div class="color-circle" style="background-color: {{ variant.color.code }};height:1rem;width:1rem;border-radius:50%;margin:1px"></div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+    {% if i.variants_set.count > 4 %}
+    <div>
+        <a class="color-circle more-colors" href="{% url 'product_detail' slug=i.slug product_id=i.id %}">...more</a>
+    </div>
+    {% endif %}
+</div>
+
+<div class="product-action">
+    <!-- View Product Modal Trigger -->
+    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId-{{ forloop.counter }}">
+        <i class="fal fa-eye"></i>
+        <i class="fal fa-eye"></i>
+    </a>
+    
+    <!-- Add to Wishlist (Heart Icon) -->
+    <div id="wishlist-container">
+        {% if product_variant.id|stringformat:"s" in wishlist_products_ids_list %}
+            <!-- Item is in Wishlist (Show filled heart) -->
+            <i id="wishlist-like-{{ product_variant.id|stringformat:"s" }}" class="fa fa-heart filled-heart" onclick="toggleWishlist('{{ product_variant.id|stringformat:"s" }}', this)" style="cursor: pointer;"></i>
+        {% else %}
+            <!-- Item is not in Wishlist (Show empty heart) -->
+            <i id="wishlist-like-{{ product_variant.id|stringformat:"s" }}" class="fa fa-heart" onclick="toggleWishlist('{{ product_variant.id|stringformat:"s" }}', this)" style="cursor: pointer;"></i>
+        {% endif %}
+    </div>
+    
+    <!-- Other Product Actions (if any) -->
+    <a href="#" class="icon-box icon-box-1">
+        <i class="fal fa-layer-group"></i>
+        <i class="fal fa-layer-group"></i>
+    </a>
+</div>
+
+<script>
+    function toggleWishlist(productVariantId, icon) {
+        // Check if productVariantId is in the wishlist
+        var isLiked = icon.classList.contains('filled-heart');
+
+        if (isLiked) {
+            // Remove from wishlist (simulate action)
+            removeFromWishlist(productVariantId);
+            icon.classList.remove('filled-heart');
+        } else {
+            // Add to wishlist (simulate action)
+            addToWishlist(productVariantId);
+            icon.classList.add('filled-heart');
+        }
+    }
+
+    function addToWishlist(productVariantId) {
+        // Make AJAX request to add product variant to wishlist
+        $.ajax({
+            url: '/wishlist' + productVariantId + '/', // Adjust URL endpoint as needed
+            type: 'POST', // HTTP method
+            data: {
+                'product_variant_id': productVariantId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}' // Include CSRF token for security
+            },
+            success: function(response) {
+                console.log('Product variant added to wishlist:', productVariantId);
+                toastr.success('Item added to wishlist!');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error adding product variant to wishlist:', error);
+                alert('Failed to add product variant to wishlist. Please try again.');
+            }
+        });
+    }
+
+    function removeFromWishlist(productVariantId) {
+        // Make AJAX request to remove product variant from wishlist
+        $.ajax({
+            url: '/wishlist/remove/' + productVariantId + '/', // Adjust URL endpoint as needed
+            type: 'POST', // HTTP method
+            data: {
+                'product_variant_id': productVariantId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}' // Include CSRF token for security
+            },
+            success: function(response) {
+                console.log('Product variant removed from wishlist:', productVariantId);
+                toastr.success('Item removed from wishlist.');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error removing product variant from wishlist:', error);
+                alert('Failed to remove product variant from wishlist. Please try again.');
+            }
+        });
+    }
+</script>
+
+
+
+
+
+
+
+            
+        </div>
+        <div class="product__content-3">
+            <h6><a href="{% url 'product_detail' slug=i.slug product_id=i.id %}" style="word-wrap: break-word; overflow-wrap: break-word;">{{i.name}}</a></h6>
+            <div class="rating mb-5">
+                <ul>
+                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                </ul>
+                <span>(01 review)</span>
+            </div>
+            <div>
+                {% comment %} <del><span>&#8377;</span>{{i.price|floatformat:0 }}</del> {% endcomment %}
+              
+            </div>
+            <div class="price mb-10">
+                <div class="prices"> <span>&#8377;</span>{% calculate_pricetag i.price i.Discount %}</div>
+                <div class="original-price">&#8377;{{i.price|floatformat:0 }}</div>
+                <div class="discount-info">{{ i.Discount }}% off</div>
+               
+            </div>
+        </div>
+        <div class="product__add-cart-s text-center">
+            <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
+                data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
+                Quick View
+            </button>
+        </div>
+    </div>
+</div>
+{% endfor %}

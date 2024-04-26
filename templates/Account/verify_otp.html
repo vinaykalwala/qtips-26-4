@@ -1,0 +1,96 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>OTP Verification</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+    <!--<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}">-->
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+<body>
+<div style="width: 100%; display: flex; justify-content: center; align-items: center; flex-direction: column;margin-top:2rem">
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="color: #3f96cd;">Q<span style="color:black">Tipstore</span></h1>
+    </div>
+
+    {% for message in messages %}
+        <p class="warning_cancel_p tp-in-btn w-100 zindex-popover">{{ message }}
+            <button class="warning_cancel" onclick="disable()">x</button>
+        </p>
+    {% endfor %}
+
+    <div class="account-area mt-70 mb-70"
+         style="
+                 display: flex;
+                 justify-content: center;
+                 align-items: center;
+                 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 mx-auto">
+                    <div class="basic-login"
+                         style="padding: 20px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+                        <h5 style="margin-bottom: 20px;">OTP Verification</h5>
+                        <form action="/auth/verify-otp/" method="post">
+                            {% csrf_token %}
+                            <label for="otp">Enter OTP:</label><br>
+                            <input type="text" id="otp" name="otp" required class="form-control"><br>
+                            <button type="submit"
+                                    class="tp-in-btn w-100"
+                                    style="background-color: #3f96cd; color: #fff; border: none; padding: 10px; border-radius: 5px;">
+                                Verify OTP
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS here -->
+<script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+<script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+<script src="{% static 'assets/js/meanmenu.js' %}"></script>
+<script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+<script src="{% static 'assets/js/tweenmax.js' %}"></script>
+<script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+<script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+<script src="{% static 'assets/js/parallax.js' %}"></script>
+<script src="{% static 'assets/js/backtotop.js' %}"></script>
+<script src="{% static 'assets/js/nice-select.js' %}"></script>
+<script src="{% static 'assets/js/countdown.min.js' %}"></script>
+<script src="{% static 'assets/js/counterup.js' %}"></script>
+<script src="{% static 'assets/js/ui-slider-range.js' %}"></script>
+<script src="{% static 'assets/js/wow.js' %}"></script>
+<script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+<script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+<script src="{% static 'assets/js/ajax-form.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+<script>
+    const disable = () => {
+        document.querySelector('.warning_cancel').style.display = 'none';
+        document.querySelector('.warning_cancel_p').style.display = 'none';
+    }
+</script>
+</body>
+</html>

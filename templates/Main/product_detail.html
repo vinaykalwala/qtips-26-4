@@ -1,0 +1,1831 @@
+{% load static %}
+{% load product_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>QTipstore</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery library (required) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Include Toastr.js library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+<!-- Slick CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<!-- Slick JavaScript -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+</head>
+
+<body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+   
+    
+
+      <style>
+        .star-rating {
+            display: flex;
+            cursor: pointer;
+        }
+        .carousel-item {
+            overflow-y: auto;
+        }
+        .carousel-inner {
+            max-height: 400px; /* Set maximum height for the carousel */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        
+        .carousel-item {
+            display: flex; /* Use flexbox to stack items vertically */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            text-align: center; /* Center text horizontally */
+            padding: 10px; /* Add padding for better spacing */
+        }
+        
+        .carousel-item .row {
+            flex-wrap: nowrap; /* Prevent items from wrapping */
+        }
+        
+        .carousel-item .col-md-2 {
+            flex: 0 0 auto; /* Prevent items from stretching */
+            width: 20%; /* Set width of each item */
+            margin-right: 15px; /* Add margin between items */
+        }
+        
+
+        .star {
+            font-size: 24px;
+            color: black;
+            transition: color 0.3s;
+        }
+
+        .star:hover {
+            color: yellow;
+        }
+
+        .cart-btn:hover {
+            text-decoration: none; /* Remove underline on hover */
+            color: inherit; /* Maintain text color on hover */
+            background-color: transparent; /* Maintain background color on hover */
+        }
+        .star_out{
+            font-size: 24px;
+            color: black;
+            transition: color 0.3s;
+        }
+
+        .comment-section {
+            margin-top: 20px;
+        }
+
+        .comment {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+.cart-btn{
+    width:50px;
+}
+
+
+        .add-comment {
+            margin-top: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        textarea,
+        input {
+            padding: 5px;
+        }
+
+        .A {
+            padding: 8px;
+            background-color: #4caf50;
+            color: white;
+            cursor: pointer;
+        }
+        .product__details-nav-thumb {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .magnify {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        display: none;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        background: #fff;
+        background-size: 100% 100%;
+        z-index: 2;
+    }
+
+    .product__details-nav-thumb:hover .magnify {
+        display: block;
+    }
+    #sizeRadioGroup {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 10px;
+    }
+
+    .size-box {
+        cursor: pointer;
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        {% if size_radio == size %} box-shadow: blue 2px 3px 4px; {% endif %} /* Add box-shadow style */
+    }
+
+    #colorRadioGroup {
+        display: flex;
+        gap: 10px;
+    }
+
+    .color-box {
+    width: 60px; /* Adjust the width as needed */
+    height: 60px; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    position: relative;
+}
+
+.border1, .border2 {
+    position: absolute;
+    width: calc(100% - 4px); /* Adjust the width to create a 2px gap between borders */
+    height: calc(100% - 4px); /* Adjust the height to create a 2px gap between borders */
+    border-radius: 50%;
+    border: 2px solid transparent;
+}
+
+.border1 {
+    top: 2px;
+    left: 2px;
+    border-radius: calc(50% + 1px); /* 1px more radius */
+}
+
+.border2 {
+    top: 4px;
+    left: 4px;
+    border-radius: calc(50% + 2px); /* 2px more radius */
+}
+
+.color-name {
+    margin-top: 5px;
+}
+
+.color-box {
+    width: 80px; /* Adjust the width as needed */
+    height: 80px; /* Adjust the height as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.color-circle {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; /* Maintain a 1:1 aspect ratio for a perfect circle */
+    border-radius: 50%;
+    background-color: inherit;
+}
+
+.color-name {
+    margin-top: 5px;
+    font-size: 12px; /* Adjust the font size as needed */
+    color: #555; /* Adjust the color as needed */
+}
+.color-box {
+    /* Adjust the height as needed */
+    opacity: 0.7; /* Initial opacity effect */
+    transition: opacity 0.3s; /* Smooth transition effect */
+}
+
+.color-box.active {
+    opacity: 1; /* Normal opacity for the active color_radio */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+/* Apply styles to the table */
+/* Apply styles to the table */
+table {
+  border-collapse: collapse;
+  border: none;
+  width: 100% !important;
+  gap: 1rem;
+  /* margin-bottom:px; Add some bottom margin for spacing */
+}
+
+/* Style the table headers */
+th {
+  font-weight: bold;
+}
+
+/* Style the table cells */
+td, th {
+  padding: 0.1rem;
+  text-align: left;
+}
+
+/* Make the table responsive */
+@media (max-width: 767px) {
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+}
+tr td:first-child {
+    font-weight: bold;
+  }
+  td{
+    font-size: small;
+  }
+
+
+  .header{
+    width: 100%;
+
+}
+.header-content{
+    width: 100%;
+    height: 100%;
+}
+.main-area{
+    /* flex-direction: row-reverse; */
+    /* background-color: #46F2B7; */
+    margin: 0px;
+}
+.content-area{
+    height: auto;
+}
+.side-bar{
+    height: 400px;
+    width: 100%;
+}
+.sticky-sidebar{
+    position: sticky;
+    width: 100%;
+    top: 10px;
+}
+.bottom-fixed-sidebar{
+    width: calc(100% - 30px);
+    position: absolute;
+    bottom: 0px;
+}
+.footer-area{
+    width: 100%;
+    /height: 500px;/
+    background-color:white;
+}
+.footer-content{
+    width: 100%;
+    height: 100%;
+}
+.table-container {
+  max-height: 200px; /* Adjust as needed */
+  overflow: hidden;
+}
+
+.table-container.show-all {
+  max-height: none;
+}
+
+th, td {
+  text-align: left;
+}
+
+#showMoreBtn {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.icon{
+    margin-right:10px;
+}
+
+
+ .modal {
+    display: none; /* Hide the modal by default */
+    position: absolute; /* Position the modal absolutely */
+    background-color: #fff; /* Set background color */
+    width: 180px; /* Set width */
+    height: 75px; /* Set height */
+    border-radius: 5px; /* Add border radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow */
+    margin-left: 1050px;
+    margin-top: 240px;
+}
+ .close {
+    color: #aaa; /* Set color */
+    float: right; /* Float the close button to the right */
+    font-size: 20px; /* Set font size */
+    font-weight: bold; /* Set font weight */
+    margin-left: 140px ;
+}
+
+/* Style for the modal content */
+.modal-content {
+    padding: 10px; /* Add padding */
+    
+}
+
+
+
+/* Style for the social icons */
+.social-icons {
+    list-style-type: none; /* Remove default list style */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+}
+
+.social-icons li {
+    display: inline-block; /* Display list items inline */
+    margin-right: 10px; /* Add right margin */
+}
+
+.social-icons li:last-child {
+    margin-right: 0; /* Remove right margin for the last list item */
+}
+
+.social-icons li a {
+    font-size: 24px; /* Set icon font size */
+}
+
+/* Style for the "Share" button */
+.share-button {
+     position: fixed; /* Position the button relatively */
+    float: right; /* Float the button to the right */
+}
+
+.share-container {
+    display: flex; /* Use flexbox layout */
+    justify-content: flex-end; /* Align items to the end of the container */
+    
+}
+
+/* Style for the share button */
+.dm-item {
+    margin-left: auto; /* Move the share button to the right side of the container */
+}
+
+.carousel-title{
+    padding-left: 550px;
+    padding-top: 250px;
+    display: inline-block; /* Make heading an inline block element */
+    text-align: center;         
+    }
+    /* Carousel container */
+    #similarProductsCarousel {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+    }
+
+    /* Carousel title */
+    .carousel-title {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    /* Carousel item */
+    .carousel-item {
+        overflow: hidden;
+    }
+
+    /* Card container */
+    .card {
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        width:180px;
+    }
+
+    #similarProductsCarousel {
+        overflow: hidden;
+    }
+    
+    #carouselRow {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    
+    .card {
+        flex: 0 0 auto;
+        margin-right: 10px; /* Adjust spacing between cards as needed */
+    }
+    
+    .carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px; /* Adjust size as needed */
+        cursor: pointer;
+    }
+    
+    #prevButton {
+        left: 10px;
+        margin-top:-100px;
+    }
+    
+    #nextButton {
+        right: 10px;
+        margin-top:-100px;
+    }
+    #prevButton,
+#nextButton {
+transform: translateY(-50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+h2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h2:before,
+h2:after {
+    content: '';
+    border-top: 2px solid;
+    margin: 0 20px 0 0;
+    flex: 1 0 20px;
+}
+
+h2:after {
+    margin: 0 0 0 20px;
+}
+
+
+
+h2 {
+    margin: 30px 0;
+    font: 700 2em/1.4 'Avenir', sans-serif;
+    color: #FFF;
+}
+
+.card-img-top {
+    transition: transform 0.2s ease;
+   
+}
+
+.card-img-top:hover {
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+    cursor: pointer;
+}
+/* Customize Toastr.js toast messages */
+.toast {
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.toast-success {
+    background-color: black; /* Green */
+    color: white;
+}
+
+.toast-error {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+/* Customize the title and message */
+.toast-title {
+    font-weight: bold;
+}
+
+.toast-message {
+    margin-top: 5px;
+}
+
+.original-price {
+    text-decoration: line-through; /* Apply line-through style to the text */
+  font-size:15px;
+  margin-left:20px;
+   
+}
+.price{
+    display:flex;
+}
+.discount-info {
+    font-size: 18px; /* Set desired font size (e.g., 18px) */
+    color: #22a42f; /* Set desired text color (e.g., red) */
+    margin-left:20px;
+   
+}
+
+.side-heading{
+    color:#3498DB;
+}
+
+    </style>
+   </head>
+   <body>
+      <!--[if lte IE 9]>
+      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+      <![endif]-->
+
+
+    <!-- preloader start -->
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <svg viewBox="0 0 58 58" id="mustard" class="product">
+                <g>
+                <path style="fill:#ED7161;" d="M39.869,58H18.131C16.954,58,16,57.046,16,55.869V12.621C16,11.726,16.726,11,17.621,11h22.757
+                    C41.274,11,42,11.726,42,12.621v43.248C42,57.046,41.046,58,39.869,58z" />
+                <polygon style="fill:#D13834;" points="35,11 23,11 27.615,0 30.385,0 	" />
+                <rect x="16" y="16" style="fill:#D75A4A;" width="26" height="2" />
+                <rect x="20" y="11" style="fill:#D75A4A;" width="2" height="6" />
+                <rect x="25" y="11" style="fill:#D75A4A;" width="2" height="6" />
+                <rect x="30" y="11" style="fill:#D75A4A;" width="2" height="6" />
+                <rect x="36" y="11" style="fill:#D75A4A;" width="2" height="6" />
+                <circle style="fill:#D13834;" cx="29" cy="36" r="10" />
+                </g>
+                </svg>
+                <svg viewBox="0 0 49.818 49.818" id="meat" class="product">
+                    <g>
+                    <path style="fill:#994530;" d="M0.953,38.891c0,0,3.184,6.921,11.405,9.64c1.827,0.604,3.751,0.751,5.667,0.922
+                        c7.866,0.703,26.714-0.971,31.066-18.976c1.367-5.656,0.76-11.612-1.429-17.003C44.51,5.711,37.447-4.233,22.831,2.427
+                        c-8.328,3.795-7.696,10.279-5.913,14.787c2.157,5.456-2.243,11.081-8.06,10.316C1.669,26.584-1.825,30.904,0.953,38.891z" />
+                    <g>
+                        <path style="fill:#D75A4A;" d="M4.69,37.18c0.402,0.785,3.058,5.552,9.111,7.554c1.335,0.441,2.863,0.577,4.482,0.72l0.282,0.025
+                            c0.818,0.073,1.698,0.11,2.617,0.11c18.18,0,22.854-11.218,24.02-16.041c1.134-4.693,0.706-9.703-1.235-14.488
+                            C41.049,7.874,36.856,4.229,31.506,4.229c-2.21,0-4.683,0.615-7.349,1.83c-2.992,1.364-6.676,3.921-4.13,10.36
+                            c1.284,3.25,0.912,6.746-1.023,9.591c-2.17,3.191-6.002,4.901-9.895,4.39c-0.493-0.065-0.966-0.099-1.404-0.099
+                            c-1.077,0-2.502,0.198-3.173,1.143C3.765,32.524,3.823,34.609,4.69,37.18z" />
+                        <path style="fill:#C64940;" d="M21.184,46.589c-0.948,0-1.858-0.038-2.706-0.114l-0.283-0.025
+                            c-1.674-0.147-3.257-0.287-4.706-0.767c-6.376-2.108-9.188-7.073-9.688-8.047l-0.058-0.137c-0.984-2.917-0.993-5.273-0.026-6.635
+                            c0.912-1.285,2.89-1.807,5.524-1.456c3.537,0.466,6.959-1.054,8.936-3.961c1.746-2.565,2.082-5.723,0.921-8.661
+                            c-3.189-8.065,2.707-10.754,4.645-11.638c9.68-4.407,16.81-1.155,21.152,9.535c2.021,4.981,2.464,10.202,1.28,15.099
+                            C44.953,34.836,40.073,46.589,21.184,46.589z M5.613,36.787c0.401,0.758,2.936,5.155,8.503,6.997
+                            c1.229,0.406,2.699,0.536,4.256,0.673l0.284,0.025c0.788,0.07,1.639,0.106,2.527,0.106c17.469,0,21.938-10.683,23.048-15.276
+                            c1.084-4.487,0.672-9.286-1.19-13.877C40.29,8.663,36.409,5.229,31.506,5.229c-2.067,0-4.4,0.585-6.934,1.74
+                            c-3.02,1.376-5.81,3.532-3.615,9.083c1.408,3.563,0.998,7.398-1.126,10.521c-2.404,3.534-6.563,5.386-10.852,4.818
+                            c-1.793-0.236-3.197,0.019-3.632,0.632C4.912,32.636,4.756,34.207,5.613,36.787z" />
+                    </g>
+                    <g>
+                        <circle style="fill:#E6E6E6;" cx="32.455" cy="12.779" r="4" />
+                        <path style="fill:#7A3726;" d="M32.455,17.779c-2.757,0-5-2.243-5-5s2.243-5,5-5s5,2.243,5,5S35.212,17.779,32.455,17.779z
+                            M32.455,9.779c-1.654,0-3,1.346-3,3s1.346,3,3,3s3-1.346,3-3S34.109,9.779,32.455,9.779z" />
+                    </g>
+                    <path style="fill:#C64940;" d="M25.617,45.684l-1.941-0.479c0.435-1.761-1.063-3.216-3.446-4.859
+                        c-2.875-1.984-4.817-5.117-5.327-8.595c-0.186-1.266-0.425-2.285-0.428-2.295l1.922-0.548c0.01,0.028,1.09,3.104,3.978,4.314
+                        c2.094,0.877,4.667,0.598,7.648-0.832c11.578-5.554,17.102-2.646,17.332-2.52l-0.967,1.752c-0.04-0.021-4.97-2.48-15.5,2.57
+                        c-3.53,1.694-6.662,1.984-9.312,0.863c-0.801-0.339-1.49-0.779-2.078-1.265c0.769,1.974,2.11,3.695,3.867,4.907
+                        C23.149,39.931,26.472,42.222,25.617,45.684z" />
+                    <path style="fill:#C64940;" d="M27.074,27.586c-5.37,0-7.605-3.694-7.633-3.74l1.727-1.01l-0.863,0.505l0.859-0.511
+                        c0.108,0.179,2.714,4.335,9.738,2.105c1.54-0.794,12.038-6.002,15.619-2.289l-1.439,1.389c-1.979-2.052-9.229,0.576-13.332,2.714
+                        l-0.154,0.064C29.892,27.364,28.389,27.586,27.074,27.586z" />
+                    </g>
+                </svg>
+                <svg viewBox="0 0 49 49" id="soda" class="product">
+                    <g>
+                    <path style="fill:#E22F37;" d="M9.5,27V5.918c0-1.362,0.829-2.587,2.094-3.093l0,0C12.642,2.406,13.5,1.14,13.5,0.011L13.5,0v0
+                        l11,0l11,0v0v0.011c0,1.129,0.858,2.395,1.906,2.814l0,0c1.265,0.506,2.094,1.73,2.094,3.093V27v-5v21.082
+                        c0,1.362-0.829,2.587-2.094,3.093h0c-1.048,0.419-1.906,1.686-1.906,2.814V49l0,0h-11h-11l0,0l0-0.011
+                        c0-1.129-0.858-2.395-1.906-2.814h0c-1.265-0.506-2.094-1.73-2.094-3.093V22" />
+                    <path style="fill:#F75B57;" d="M18.5,7h-5c-0.553,0-1-0.447-1-1s0.447-1,1-1h5c0.553,0,1,0.447,1,1S19.053,7,18.5,7z" />
+                    <path style="fill:#F75B57;" d="M35.5,7h-13c-0.553,0-1-0.447-1-1s0.447-1,1-1h13c0.553,0,1,0.447,1,1S36.053,7,35.5,7z" />
+                    <path style="fill:#994530;" d="M18.5,45h-5c-0.553,0-1-0.447-1-1s0.447-1,1-1h5c0.553,0,1,0.447,1,1S19.053,45,18.5,45z" />
+                    <path style="fill:#994530;" d="M35.5,45h-13c-0.553,0-1-0.447-1-1s0.447-1,1-1h13c0.553,0,1,0.447,1,1S36.053,45,35.5,45z" />
+                    <polygon style="fill:#E6E6E6;" points="39.5,32 9.5,42 9.5,20 39.5,10 	" />
+                    <polygon style="fill:#F9D70B;" points="39.5,28 9.5,38 9.5,24 39.5,14 	" />
+                    </g>
+                </svg>
+                <div class="cart-container">
+                    <svg viewBox="0 0 512 512" id="cart">
+                    <circle cx="376.8" cy="440" r="55" />
+                    <circle cx="192" cy="440" r="55" />
+                    <polygon points="128,0 0.8,0 0.8,32 104.8,32 136.8,124.8 170.4,124.8 " />
+                    <polygon style="fill:#ED7161;" points="250.4,49.6 224,124.8 411.2,124.8 " />
+                    <polygon style="fill:#ee5a46;" points="411.2,124.8 224,124.8 170.4,124.8 136.8,124.8 68,124.8 141.6,361.6 427.2,361.6
+                    511.2,124.8 " />
+                    <g>
+                        <rect x="166.4" y="185.6" style="fill:#FFFFFF;" width="255.2" height="16" />
+                        <rect x="166.4" y="237.6" style="fill:#FFFFFF;" width="166.4" height="16" />
+                    </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- preloader end -->
+
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+    <!-- header-start -->
+     {% include "includes/header.html" %}
+     <!-- header-end -->
+
+    <!-- offcanvas area start -->
+    {% include "includes/offcanvas.html" %}
+
+    <!-- offcanvas area end -->
+    <div class="body-overlay"></div>
+    <!-- offcanvas area end -->
+
+    <main>
+
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+         <div class="col-md-6">
+            </div>
+
+            <div class="col-md-6">
+                <div class="share-container">
+                    <div class="dm-item">
+                        <a href="#" onclick="showShareModal()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" class="Kj-yxs"><path d="M14.78 5.883L9.032 0v3.362C3.284 4.202.822 8.404 0 12.606 2.053 9.666 4.927 8.32 9.032 8.32v3.446l5.748-5.883z" class="_2bvlkb" fill="#c2c2c2" fill-rule="evenodd"></path></svg> Share
+                            
+                        </a>
+                        <div id="wishlist-container">
+                            {% if product_variant.id|stringformat:"s" in wishlist_products_ids_list %}
+                                <i id="wishlist-like" class="fa fa-heart" onclick="addToWishlist('{{ product_variant.id|stringformat:"s" }}', this)"
+                                   style="cursor: pointer;"></i>
+                            {% else %}
+                                <i id="wishlist-like" class="fa fa-heart"  onclick="addToWishlist('{{ product_variant.id|stringformat:"s" }}', this)"
+                                   style="cursor: pointer;"></i>
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+
+                     
+                    <!-- Modal or popover for selecting social media platforms -->
+                    <div id="shareModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeShareModal()">&times;</span>
+                            
+                            <ul class="social-icons">
+                                <li><a href="#" onclick="shareOnSocialMedia('whatsapp')" style="color: green;"><i class="fab fa-whatsapp"></i></a></li>
+                                <li><a href="#" onclick="shareOnSocialMedia('twitter')" style="color: blue;"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#" onclick="shareOnSocialMedia('email')" style="color: red;"><i class="fas fa-envelope"></i></a></li>
+                                <li><a href="#" onclick="shareOnSocialMedia('instagram')" style="color: purple;"><i class="fab fa-instagram"></i></a></li>
+                                <!-- Add more social media icons and their corresponding onclick functions as needed -->
+                            </ul>
+                            
+                        </div>
+                    </div>
+                    
+                    <script>
+                        // Function to display the share modal
+                        function showShareModal() {
+                            var modal = document.getElementById('shareModal');
+                            modal.style.display = 'block';
+                        }
+                    
+                        // Function to close the share modal
+                        function closeShareModal() {
+                            var modal = document.getElementById('shareModal');
+                            modal.style.display = 'none';
+                        }
+                    
+                        // Function to share on selected social media platform
+                        function shareOnSocialMedia(platform) {
+                            // Define the URL you want to share
+                            var urlToShare = window.location.href; // This gets the current URL
+                    
+                            // Define the social media platforms and their sharing URLs
+                            var socialMediaLinks = {
+                                whatsapp: "https://api.whatsapp.com/send?text=" + encodeURIComponent(urlToShare),
+                                twitter: "https://twitter.com/intent/tweet?url=" + encodeURIComponent(urlToShare),
+                                email: "mailto:?subject=Check%20out%20this%20link&body=" + encodeURIComponent(urlToShare),
+                                instagram: "https://www.instagram.com/share?url=" + encodeURIComponent(urlToShare)
+                                // Add more social media platforms and their URLs as needed
+                            };
+                    
+                            // Open the selected social media link in a new tab
+                            window.open(socialMediaLinks[platform], platform + "Share", "width=600,height=400");
+                    
+                            // Close the share modal after selection
+                            closeShareModal();
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br><br>
+        
+
+<!-- product-details-start -->
+
+<div class="product-details">
+    <div class="container">
+        <div class="row main-area">
+            <div class="col-xl-6" style="margin-bottom:3rem">
+                <div class="product__details-nav d-sm-flex align-items-start side-bar">
+
+                    <div class="product__details-thumb" style="display: flex; width: 100%;justify-content: space-between;">
+                        <!-- Thumbnails navigation -->
+                        <ul class="nav nav-tabs" id="productThumbTab" role="tablist" style="margin: 0.5rem;
+                        flex-shrink: 4;
+margin: 0.5rem;
+flex-direction: row;
+overflow-y: scroll;
+max-height: 400px;">
+                            {% load custom_tags %}
+                            <!-- Main product image tab -->
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="thumbMain-tab" data-bs-toggle="tab" href="#thumbMain" role="tab" aria-controls="thumbMain" aria-selected="true">
+                                    <img src="{{product_variant.image_url.url}}" class="img-fluid" style="height: auto; width: 3rem;" alt="{{product_variant.image_url}}">
+                                </a>
+                            </li>
+                        
+                            <!-- Variant image tabs -->
+                            {% for variant_image in variant_images %}
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="thumb{{ variant_image.id }}-tab" data-bs-toggle="tab" href="#thumb{{ variant_image.id }}" role="tab" aria-controls="thumb{{ variant_image.id }}" aria-selected="true">
+                                        <img src="{{variant_image.image.url}}" class="img-fluid" style="height: auto; width: 3rem;" alt="{{variant_image.image.url}}">
+
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+        
+                        <!-- Main product image and Variant images content -->
+                        <div class="tab-content" style="flex-grow: 2;width: 100%">
+                            <!-- Main product image -->
+                            <div class="tab-pane fade show active product__details-nav-thumb" style="width: 100%;
+                            ement.style {
+                            display: flex;
+                            height: 100%;
+                            width: 100%;
+                            align-items: center;
+                            justify-content: center;} 
+                            "id="thumbMain" role="tabpanel" aria-labelledby="thumbMain-tab">
+                                <img src="{{product_variant.image_url.url}}" class="img-fluid main-image" style="width: 26em" alt="Main Product Image">
+                                <!-- <div class="magnify"></div> -->
+                            </div>
+
+                            <!-- Variant images -->
+                            {% for variant_image in variant_images %}
+                                <div class="tab-pane fade product__details-nav-thumb" id="thumb{{ variant_image.id }}" role="tabpanel" aria-labelledby="thumb{{ variant_image.id }}-tab">
+                                    <img src="{{variant_image.image.url}}" class="img-fluid" style="width: 26em;height:26em;" alt="Variant Image">
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                        
+                   
+                        <!-- Other product images -->
+                        <div class="tab-content">
+        {% for image in product_images %}
+<div class="tab-pane fade product__details-nav-thumb" id="thumb{{ image.id }}" style="width: 0%;" role="tabpanel" aria-labelledby="thumb{{ image.id }}-tab">
+    <img src="{{ image.image.url }}" class="img-fluid" alt="Product Image">
+</div>
+{% endfor %}
+</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+               
+                <div class="content-area">
+                <div class="product__details-content">
+
+                    <h6>{{product_variant.title}}</h6>
+                    <div style="display: flex;">
+
+                        <h5 id="averageRating_P">{{avg_rating}}</h5><span style="margin-left: 1rem;">{{avg_rating}}</span>
+                    </div>
+                    <div class="price">
+                        <span>&#8377;{{product.price}}</span>
+                        <div class="original-price">&#8377;{{ product.original_price }}</div>
+                        <div class="discount-info">{{ product.Discount }}% off</div>
+                         </div>
+                          
+                        </div>
+                    </div>
+                    <div class="features-des mb-20 mt-10">
+                         <div class="table-container" id="tableContainer">
+                        {{product.Product_info|safe}}
+</div>
+                         <button id="showMoreBtn" style="color:#3f96cd">Show More</button>
+                    </div>
+                    <hr>
+                        <div style="margin: 1rem 0rem;">
+
+                            <form method="get" action="{% url 'product_detail' slug=product.slug product_id=product.id %}" id="productForm">
+                            {% csrf_token %}
+
+                            <!-- Size selection -->
+                     <!-- Size selection -->
+{% if None not in unique_sizes and unique_sizes|length >= 1 %}
+<div style="display: flex; text-align: center; align-items: center;">
+    <h5>Size:</h5>&nbsp;
+    {% comment %} <h5>{{ size_radio }}</h5> {% endcomment %}
+</div>
+<div id="sizeRadioGroup" style="display: flex; flex-wrap: wrap; margin-bottom: 10px;">
+    {% for size in unique_sizes %}
+    <div class="size-box-container" onclick="selectSize('{{ size }}')">
+        <div class="size-box {% if size_radio == size %}active{% endif %}">{{ size }}</div>
+        <!-- Adjust the styles as needed -->
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<input type="hidden" name="size" value="{{ size_radio }}" id="selectedSize">
+
+                                            <hr>
+
+                          <!-- Color selection -->
+{% if None not in unique_colors and unique_colors|length >= 1 %}
+<div style="display: flex; text-align: center; align-items: center;">
+    <h5 style="font-size: 14px;">Color:</h5>&nbsp;
+    {% comment %} <h5 style="font-size: 14px;">{{ color_radio }}</h5> {% endcomment %}
+</div>
+
+<div id="colorRadioGroup" style="display: flex; flex-wrap: wrap;">
+    {% for color in unique_colors %}
+    <div class="color-box-container" onclick="selectColor('{{ color }}')">
+        <div class="color-box {% if color_radio == color.name %}active{% endif %}" style="background-color: {{ color.code }}; border-radius: 50%; position: relative; width: 24px; height: 24px;">
+            <!-- Adjust the width and height as needed -->
+        </div>
+        {% comment %} <span class="color-name" style="font-size: 12px;">{{ color_radio }}</span> {% endcomment %}
+        <!-- Decrease the font size for the color name -->
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<input type="hidden" readonly name="color" value="{{ color_radio }}" id="selectedColor">
+</form>
+                                </form>
+                                <script>
+                                    function selectSize(size) {
+                                        document.getElementById('selectedSize').value = size;
+                                        document.getElementById('productForm').submit();
+                                    }
+
+                                    function selectColor(color) {
+                                        document.getElementById('selectedColor').value = color;
+                                        document.getElementById('productForm').submit();
+                                    }
+                                </script>
+
+                            </div>
+                          
+                            <div class="product-stock mb-20">
+                              
+                                <div class="product-tag-area mt-15">
+                                    <div class="product_info">
+                                        <span class="sku_wrapper">
+                                            <span class="title">Model Name:</span>
+                                            <span class="sku">{{product.model_name}}</span>
+                                        </span>
+                                        <span class="posted_in">
+                                            <span class="title">Categories:</span>
+                                            <a href="#">{{product.Category}}</a>
+                                        </span>
+                                        <span class="tagged_as">
+                                            <span class="title">Tags:</span>
+                                            <a href="#">{{product.Tags}}</a>,
+    
+                                        </span>
+                                        <h5>Availability: <span> {{product.Availability}} in stock</span></h5>
+                                        <h5>Cash on delivery: <span>{% if product.cod %}Yes{% else %}No{% endif %}</span></h5>
+                                        <h5>Seller: <span class="seller-name" data-description="{{product.seller_description}}" data-since="{{product.seller_since}}">{{product.seller}}</span></h5>
+
+                                       
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <label for="pincode">Enter Pincode:</label>
+                                            <input type="text" id="pincode" name="pincode">
+                                            <button type="submit">Calculate Delivery Date</button>
+                                        </form>
+                                        
+                                        {% if delivery_date %}
+                                            <p>Estimated Delivery Date: {{ delivery_date }}</p>
+                                        {% endif %}
+                                        
+
+
+                                    </div>
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+                                    <script>
+                                        $(document).ready(function() {
+                                          // Attach click event to the seller's name
+                                          $('.seller-name').on('click', function() {
+                                            // Get seller description and since date from the clicked element's data attributes
+                                            var description = $(this).data('description');
+                                            var sinceDate = $(this).data('since');
+                                            
+                                            // Construct HTML content for SweetAlert popup
+                                            var popupContent = `
+                                              <div>
+                                                <h4 class="side-heading">Description Here</h2> <p class="description-text">${description}</p>
+                                                    <h4 class="side-heading">Seller since</h2>   <p class="seller-since">${sinceDate}</p>
+
+                                              </div>
+                                            `;
+                                        
+                                            // Show SweetAlert popup with custom HTML content
+                                            Swal.fire({
+                                              
+                                              html: popupContent,
+                                             
+                                            });
+                                          });
+                                        });
+                                        </script>
+                                        
+
+
+                                  
+                                    <div class="cart-option mb-15 d-flex justify-content-between align-items-center">
+                                        {% if product_variant.id|stringformat:"s" in cart_products_ids_list %}
+                                        <a href="javascript:void(0);" onclick="addToCart('{{ product_variant.id|stringformat:"s" }}', this)"
+                                           class="btn btn-warning text-white" style="flex-grow: 1; margin-right: 5px;">
+                                            <i class="fas fa-cart-plus"></i> <span>Add to Cart</span>
+                                        </a>
+                                        {% else %}
+                                        <a href="javascript:void(0);" onclick="addToCart('{{ product_variant.id|stringformat:"s" }}')"
+                                           class="btn btn-warning text-white" style="flex-grow: 1; margin-right: 5px;">
+                                            <i class="fas fa-cart-plus"></i> Add to Cart
+                                        </a>
+                                        {% endif %}
+                                        <button type="button" class="btn btn-danger text-white" style="flex-grow: 1;" id="buyNowButton">
+                                            <i class="fas fa-shopping-cart"></i> Buy Now
+                                        </button>
+                                </div>
+                                    
+                            </div>
+                         
+                                <script>
+
+
+                                    function addToCart(productVariantId, buttonElement) {
+                                    // Proceed with adding to the cart
+                                    $.ajax({
+                                        type: "GET",
+                                        url: "/add_to_cart/" + productVariantId + "/",
+                                        success: function (data) {
+                                            console.log("Item added to cart successfully");
+                                
+                                            // Update the cart count on the page
+                                            updateCartCount(data.cart_count);
+                                
+                                            // Update the button text to 'Added' and disable the button
+                                            $(buttonElement).text('Added').prop('disabled', true);
+                                        },
+                                        error: function (error) {
+                                            console.error("Error adding item to cart");
+                                        }
+                                    });
+                                }
+                                
+                                function updateCartCount(cartCount) {
+                                    // Update the cart count element on the page
+                                    $('.cart-count').text(cartCount);
+                                }
+                                </script>
+                            
+                                        
+                                        
+                                        
+                                        
+                                        
+                                       
+<!-- Add to Wishlist button -->
+{% comment %} <button type="button" onclick="addToWishlist('{{ product_variant.id|stringformat:"s" }}', this)" class="btn bg-info text-white d-flex mb-10 align-items-center justify-content-center w-50">
+    <i class="fas fa-heart mr-2 icon"></i> Add to Wishlist
+</button> {% endcomment %}
+
+
+<script>
+    function addToWishlist(productVariantId, button) {
+        // Toggle the color of the heart icon
+        button.classList.toggle('text-danger');
+
+        // Remove other heart icons from the container
+        var container = document.getElementById('wishlist-container');
+        var icons = container.getElementsByTagName('i');
+        for (var i = 0; i < icons.length; i++) {
+            if (icons[i] !== button) {
+                container.removeChild(icons[i]);
+            }
+        }
+
+        // Make AJAX request to add product variant to wishlist
+        $.ajax({
+            url: '/wishlist/' + productVariantId + '/', // Add trailing slash
+            type: 'POST', // HTTP method
+            data: {
+                'product_variant_id': productVariantId,
+                'csrfmiddlewaretoken': '{{ csrf_token }}' // CSRF token for security
+            },
+            success: function(response) {
+                // Callback function for successful AJAX request
+                console.log('Product variant added to wishlist:', productVariantId);
+                // Display toast message
+                toastr.success('Item added to wishlist!');
+                // Disable the button after adding to wishlist
+                button.disabled = true;
+                // Redirect to wishlist page or perform any other action as needed
+                // window.location.href = '/wishlist/';
+            },
+            error: function(xhr, status, error) {
+                // Callback function for failed AJAX request
+                console.error('Error adding product variant to wishlist:', error);
+                // Optionally display an error message to the user
+                alert('Failed to add product variant to wishlist. Please try again.');
+            }
+        });
+    }
+</script>
+
+
+<!-- JavaScript to handle button click and navigate to the checkout page -->
+<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find the button element by its ID
+        const buyNowButton = document.getElementById('buyNowButton');
+
+        // Add a click event listener to the button
+        buyNowButton.addEventListener('click', function() {
+            // Navigate to the checkout page when the button is clicked
+            window.location.href = "{% url 'checkout' %}";
+        });
+    });
+</script>
+
+</div>
+
+
+
+
+
+
+
+                            </div>
+                          
+                        
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <div class="modal fade" id="productModalId-{{forloop.counter}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+                <div class="modal-content">
+                    <div class="product__modal-wrapper p-relative">
+                        <div class="product__modal-close p-absolute">
+                            <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                        </div>
+                        <div class="product__modal-inner">
+                            <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-box">
+                                    <div class="tab-content" id="modalTabContent">
+                                        <div class="tab-pane fade show active" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
+                                            <div class="product__modal-img w-img">
+                                                <img src="{{i.image.url}}" alt="">
+                                            </div>
+                                        </div>
+
+                                        {% for j in i.product_image_set.all %}
+                                        <div class="tab-pane fade show" id="nav{{j.id}}" role="tabpanel" aria-labelledby="nav{{j.id}}-tab">
+                                            <div class="product__modal-img w-img">
+                                                <img src="{{j.image_url}}" alt="">
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+
+
+                                        </div>
+                                    <ul class="nav nav-tabs" id="modalTab" role="tablist">
+                                        {% for j in i.product_image_set.all %}
+
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="nav{{j.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{j.id}}" type="button" role="tab" aria-controls="nav{{j.id}}" aria-selected="true">
+                                                <img src="{{j.image_url}}" style="height: 8rem;" alt="">
+                                            </button>
+                                        </li>
+                                        {% endfor %}
+
+                                        </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-content">
+                                    <h4><a href="#" style='word-wrap: break-word; overflow-wrap: break-word;'>{{i.name|capfirst}}</a></h4>
+                                    <div class="product__review d-sm-flex">
+                                        <div class="rating rating__shop mb-10 mr-30">
+                                        <ul>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        </ul>
+                                        </div>
+                                        <div class="product__add-review mb-15">
+                                        <span>01 review</span>
+                                        </div>
+                                    </div>
+                                    <div class="product__price">
+                                        <span> &#8377 {{i.price}}</span>
+                                    </div>
+                                    <div class="product__modal-des mt-20 mb-15" style="height: 15rem;overflow-y: scroll;">
+                                        <ul>
+
+                                            <!-- <li>{{ i.Product_info|safe }}</li> -->
+                                            <li>{{ i.Product_info|safe }}</li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="product__stock mb-20">
+                                        <span class="mr-10">Availability :</span>
+                                        <span>{{i.Availability}} in stock</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Inside your product_detail.html template -->
+        <!-- Existing product details -->
+        
+     
+
+
+        <!-- Main HTML content for product detail page -->
+
+        {% comment %} {% block content %}
+        
+        <!-- Display details of the current product -->
+        <div class="product-details">
+            <h2>{{ product.name }}</h2>
+            <!-- Add other product details here -->
+        </div>
+         {% endcomment %}
+<!-- product-details-des-start -->
+<div class="product-details-des mt-40 mb-60 footer-area" style="padding-top:1rem">
+    <div class="container footer-content">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="product__details-des-tab">
+                    <ul class="nav nav-tabs" id="productDesTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="des-tab" data-bs-toggle="tab" data-bs-target="#des" type="button" role="tab" aria-controls="des" aria-selected="true">Description </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="aditional-tab" data-bs-toggle="tab" data-bs-target="#aditional" type="button" role="tab" aria-controls="aditional" aria-selected="false">Additional information</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review" type="button" role="tab" aria-controls="review" aria-selected="false">{{ comments|length }} Reviews  </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="prodductDesTaContent">
+            <div class="tab-pane fade active show" id="des" role="tabpanel" aria-labelledby="des-tab">
+                <div class="product__details-des-wrapper">
+                    {{product.Description|safe}}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="aditional" role="tabpanel" aria-labelledby="aditional-tab">
+                <div class="product__desc-info">
+                    <ul>
+                        {% for i in product.additional_info_set.all %}
+
+                        <li>
+                            <h6>{{i.detail}}</h6>
+                            <span>{{i.detail}}</span>
+                        </li>
+
+                        {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                <div class="product__details-review">
+
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="product__details-comment ">
+                                    <div class="comment-title mb-20">
+                                        <h3>Add a review</h3>
+                                    </div>
+
+                                    <div class="comment-input-box">
+                                        <form id="commentForm" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-xxl-12">
+                                                    <textarea name="content" placeholder="Add your comment" class="comment-input comment-textarea"></textarea>
+                                                    <div class="star-rating" id="starRatingForm" data-rating="0"></div>
+                                                    <input type="hidden" name="star-rating" id="starsRatingInput" value="0">
+                                                    <button type="button" class="A" onclick="submitCommentForm()">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4">
+                            <div class="review-rate">
+                                <h5>{{avg_rating}}</h5>
+                                <h5 id="averageRating">{{avg_rating}}</h5>
+                            </div>
+                        </div>
+                        <div class="col-xl-8">
+                            <div class="review-des-infod">
+                                <h6>{{ comments|length }} Reviews for&nbsp;"<span>{{product.name}}</span>"</h6>
+                                {% for comment in comments %}
+                                <div class="card mb-3">
+                                    <div class="card-body">
+                                        <div class="str-info">
+                                            <div class="review-star mr-15">
+                                                <i class="star-rating" data-rating="{{ comment.numeric_rating }}" style="pointer-events: none;"></i>
+                                            </div>
+                                        </div>
+                                        <div class="name-date mb-30">
+                                            {% if user.is_authenticated %}
+                                            <h6>{{ user.username }} <br><span>{{ comment.created_at }}</span></h6>
+                                            {% endif %}
+                                        </div>
+                                        <p class="card-text">{{ comment.content }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bootstrap Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img id="modalImage" width="100%" src="" alt="Modal Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+         <!-- Display similar products -->
+      <!-- Your HTML code for the carousel -->
+      <div id="similarProductsCarousel">
+        <h3>Similar Products</h3>
+        <div class="carousel-inner">
+            <div class="row" id="carouselRow">
+            {% for similar_product in similar_products %}
+            <div class="col-md-2">
+                <div class="card">
+                    <a href="{% url 'product_detail' slug=similar_product.slug product_id=similar_product.id %}">
+                        <img src="{{ similar_product.image.url }}" class="card-img-top"
+                            alt="{{ similar_product.name }}">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ similar_product.name }}</h5>
+                        <p class="card-text">Price: {{ similar_product.price }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="prevButton" class="carousel-arrow">&#9664;</div>
+        <div id="nextButton" class="carousel-arrow">&#9654;</div>
+    </div>
+  
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("carouselRow");
+        const prevButton = document.getElementById("prevButton");
+        const nextButton = document.getElementById("nextButton");
+    
+        let currentPosition = 0;
+        const cardWidth = carousel.querySelector(".card").offsetWidth;
+        const cardsPerPage = Math.floor(carousel.offsetWidth / cardWidth);
+    
+        prevButton.addEventListener("click", function () {
+            currentPosition += cardWidth * cardsPerPage;
+            if (currentPosition > 0) {
+                currentPosition = 0;
+            }
+            carousel.style.transform = `translateX(${currentPosition}px)`;
+        });
+    
+        nextButton.addEventListener("click", function () {
+            currentPosition -= cardWidth * cardsPerPage;
+            const minPosition = -(carousel.scrollWidth - carousel.offsetWidth);
+            if (currentPosition < minPosition) {
+                currentPosition = minPosition;
+            }
+            carousel.style.transform = `translateX(${currentPosition}px)`;
+        });
+    });
+    
+</script>    
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Slick Carousel CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+<!-- Slick Carousel JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize Slick Carousel
+        $('#similarProductsCarousel .carousel-inner').slick({
+            slidesToShow: 5, // Adjust as per your requirement
+            slidesToScroll: 1,
+            prevArrow: $('#prevButton'),
+            nextArrow: $('#nextButton'),
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 3,
+                    }
+                }
+            ]
+        });
+    });
+</script>
+
+        
+
+<div id="recentlyViewedCarousel" class="similar-products" mb-4>
+    <h3>Recently Viewed Products</h3>
+    <div class="carousel-inner">
+        <div class="row" id="viewedCarouselRow">
+            {% for viewed_product in viewed_products %}
+            <div class="col-md-2">
+                <div class="card">
+                    <a href="{% url 'product_detail' slug=viewed_product.slug product_id=viewed_product.id %}">
+                        <img src="{{ viewed_product.image.url }}" class="card-img-top" alt="{{ viewed_product.name }}" width="100px" height="200px">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ viewed_product.name }}</h5>
+                        <p class="card-text">Price: {{ viewed_product.price }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="viewedPrevButton" class="carousel-arrow">&#9664;</div>
+        <div id="viewedNextButton" class="carousel-arrow">&#9654;</div>
+    </div>
+</div>
+        <!-- product-details-end -->
+
+
+
+      <!-- Your existing template code -->
+
+
+      
+    
+
+
+
+
+
+        
+
+    </main>
+
+
+      <!-- JS here -->
+      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+      <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+      <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+      <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+      <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+      <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+      <script src="{% static 'assets/js/parallax.js' %}"></script>
+      <script src="{% static 'assets/js/backtotop.js' %}"></script>
+      <script src="{% static 'assets/js/nice-select.js' %}"></script>
+      <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+      <script src="{% static 'assets/js/counterup.js' %}"></script>
+      <script src="{% static 'assets/js/ui-slider-range.js' %}"></script>
+      <script src="{% static 'assets/js/wow.js' %}"></script>
+      <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+      <script src="{% static 'assets/js/main.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    const contentArea = document.querySelector('.content-area')
+    const sideBar = document.querySelector('.side-bar')
+
+    // run function on load, scroll and resize for better performance
+    window.onload = () => controlSideBarFloating()
+    window.onscroll = () => controlSideBarFloating()
+    window.onresize = () => controlSideBarFloating()
+
+    // lets define some variables
+    var leftBlock = contentArea
+    var rightBlock = sideBar
+    var topSpace = 10
+    var breakpoint = 992  // we use 992 for col-lg
+    var stickyClass = 'sticky-sidebar'
+    var bottomFixedClass = 'bottom-fixed-sidebar'
+
+    // now create a function that will create sticky sidebar and use above variables
+    function controlSideBarFloating(){
+        var rectL = leftBlock.getBoundingClientRect();
+        var rectR = rightBlock.getBoundingClientRect();
+        if(window.innerWidth >= breakpoint){
+            if(rectL.top-topSpace <= 0){
+                rightBlock.classList.add(stickyClass)
+                rightBlock.classList.remove(bottomFixedClass)
+            }else{
+                rightBlock.classList.remove(stickyClass)
+                rightBlock.classList.remove(bottomFixedClass)
+            }
+        }else{
+            rightBlock.classList.remove(stickyClass)
+            rightBlock.classList.remove(bottomFixedClass)
+        }
+    }
+</script>
+
+<script>
+                                document.addEventListener('DOMContentLoaded', function () {
+  const tableContainer = document.getElementById('tableContainer');
+  const showMoreBtn = document.getElementById('showMoreBtn');
+
+  if (tableContainer.scrollHeight <= 230) {
+    // If the height of the table is less than or equal to 200px, hide the button
+    showMoreBtn.style.display = 'none';
+  }
+
+  showMoreBtn.addEventListener('click', function () {
+    tableContainer.classList.toggle('show-all');
+    if (tableContainer.classList.contains('show-all')) {
+      showMoreBtn.innerText = 'Show Less';
+    } else {
+      showMoreBtn.innerText = 'Show More';
+    }
+  });
+});
+
+
+                            </script>
+
+<script>
+
+
+   // Include jQuery library in your HTML if you haven't already
+// <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+      $('#wishlist-form').submit(function(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+    
+        // Serialize form data
+        var formData = $(this).serialize();
+    
+        // Send AJAX POST request
+     // Send AJAX POST request
+$.ajax({
+    url: '/wishlist/' + product_variant_id + '/', // URL of your Django view
+    method: 'POST',
+    dataType: 'json',
+    success: function(response) {
+      // Handle success response
+      console.log(response);
+      alert(response.message); // Show success message
+    },
+    error: function(xhr, status, error) {
+      // Handle error response
+      console.error(xhr.responseText);
+      alert('Error: ' + xhr.responseText); // Show error message
+    }
+  });
+  
+      });
+    });
+    </script>
+    
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var mainImageContainer = document.getElementById("thumbMain");
+        var magnifyContainer = mainImageContainer.querySelector(".magnify");
+
+        mainImageContainer.addEventListener("mousemove", function (e) {
+            var rect = mainImageContainer.getBoundingClientRect();
+            var x = e.clientX - rect.left;
+            var y = e.clientY - rect.top;
+
+            magnifyContainer.style.backgroundImage = 'url("' + '{{ product_variant.image_url }}' + '")';
+            magnifyContainer.style.backgroundPosition = '-' + x * 2 + 'px -' + y * 2 + 'px';
+        });
+    });
+</script>
+
+<script>
+
+
+    function resetColorSelection() {
+        // Reset the selected color
+        var colorRadios = document.getElementsByName('color');
+        for (var i = 0; i < colorRadios.length; i++) {
+            colorRadios[i].checked = false;
+        }
+
+        // Submit the form to update the variants
+        document.getElementById('productForm').submit();
+    }
+</script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const radioButtons = document.querySelectorAll('input[name="color"]');
+
+        radioButtons.forEach(function (radioButton) {
+            radioButton.addEventListener('change', function () {
+                const selectedColor = this.value;
+
+                // Save the current scroll position
+                const scrollPosition = window.scrollY || window.pageYOffset;
+
+                // Update the URL without triggering a page reload
+                const currentUrl = new URL(window.location.href);
+                currentUrl.searchParams.set('color', selectedColor);
+                history.replaceState({ scrollPosition }, '', currentUrl.toString());
+
+                // Scroll back to the saved position after a short delay
+                setTimeout(function () {
+                    window.scrollTo(0, scrollPosition);
+                }, 10);
+            });
+        });
+
+        // Restore the scroll position if it's available in the state
+        window.addEventListener('popstate', function (event) {
+            if (event.state && event.state.scrollPosition !== undefined) {
+                window.scrollTo(0, event.state.scrollPosition);
+            }
+        });
+    });
+</script>
+
+
+<script>
+    const hash = window.location.hash;
+    if (hash) {
+        // Scroll to the element with the corresponding id
+        const targetElement = document.querySelector(hash);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+<script>
+    function openModal(imageUrl) {
+        // Set the image source in the modal
+        document.getElementById('modalImage').src = imageUrl;
+
+        // Open the Bootstrap modal
+        $('#myModal').modal('show');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const starRatingElements = document.querySelectorAll('.star-rating');
+
+        starRatingElements.forEach(function(element) {
+            const numericRating = parseInt(element.dataset.rating);
+            displayStars(element, numericRating);
+
+            element.addEventListener('mousemove', function(event) {
+                const hoveredStarIndex = event.target.dataset.index;
+                const rating = parseInt(hoveredStarIndex) + 1;
+
+                // Update the displayed stars temporarily on hover
+                displayStars(element, rating);
+            });
+
+            element.addEventListener('mouseleave', function() {
+                const numericRating = parseInt(element.dataset.rating);
+                // Restore the stars to their original state
+                displayStars(element, numericRating);
+            });
+
+            element.addEventListener('click', function(event) {
+                const clickedStarIndex = event.target.dataset.index;
+                const rating = parseInt(clickedStarIndex) + 1; // Index is zero-based
+
+                // Update the displayed stars
+                displayStars(element, rating);
+
+                // Update the dataset rating value
+                element.dataset.rating = rating;
+
+                // Update the numeric rating input field
+                const numericRatingInput = document.getElementById('starsRatingInput');
+                numericRatingInput.value = rating;
+            });
+        });
+
+        function displayStars(element, numericRating) {
+            element.innerHTML = '';
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.className = 'star';
+                star.textContent = '★';
+                star.dataset.index = i - 1; // Store the index (zero-based) in the dataset
+                star.style.color = i <= numericRating ? 'yellow' : 'black';
+                element.appendChild(star);
+            }
+        }
+
+        function displayAverageStars(averageRating) {
+            const averageRatingElement = document.getElementById('averageRating');
+            const averageRatingElement_P = document.getElementById('averageRating_P');
+            displayStars(averageRatingElement, averageRating);
+            displayStars(averageRatingElement_P, averageRating);
+        }
+
+        const avgRating = parseFloat("{{ avg_rating }}"); // Convert the string to a floating-point number
+        displayAverageStars(avgRating);
+    });
+
+    function submitCommentForm() {
+        event.preventDefault();
+        const form = document.getElementById('commentForm');
+        const formData = new FormData(form);
+
+        const starsRatingInput = document.getElementById('starsRatingInput');
+        const starRatingForm = document.getElementById('starRatingForm');
+        const numericRating = starRatingForm.dataset.rating;
+
+        // Update the numeric_rating value in the form data
+        formData.set('numeric_rating', numericRating);
+
+        // Add CSRF token to form data
+        formData.set('csrfmiddlewaretoken', document.getElementsByName('csrfmiddlewaretoken')[0].value);
+
+        fetch(/add_comment/{{ product.slug }}/, {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // Clear the input fields
+                    form.reset();
+                    starsRatingInput.value = '';
+                    // Reset the star rating
+                    starRatingForm.dataset.rating = 0;
+                    // Refresh the comment section or append the new comment
+                    // (You can also use a more efficient way to update the comments without reloading the page)
+                    location.reload();
+                } else {
+                    alert('Error submitting comment.');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+</script>
+
+
+<script>
+                            // Wait for the DOM to be fully loaded
+                            document.addEventListener("DOMContentLoaded", function() {
+                                // Get all variant image tabs
+                                var variantTabs = document.querySelectorAll('.nav-link');
+                        
+                                // Iterate through each variant image tab
+                                variantTabs.forEach(function(tab) {
+                                    // Add event listener for mouseover event
+                                    tab.addEventListener('mouseover', function() {
+                                        // Get the ID of the tab
+                                        var tabId = this.getAttribute('href').replace('#', '');
+                        
+                                        // Remove 'active' class from all tabs
+                                        variantTabs.forEach(function(tab) {
+                                            tab.classList.remove('active');
+                                        });
+                        
+                                        // Add 'active' class to the current tab
+                                        this.classList.add('active');
+                        
+                                        // Remove 'show' class from all tab panes
+                                        var tabPanes = document.querySelectorAll('.tab-pane');
+                                        tabPanes.forEach(function(pane) {
+                                            pane.classList.remove('show', 'active');
+                                        });
+                        
+                                        // Add 'show' class to the current tab pane
+                                        document.getElementById(tabId).classList.add('show', 'active');
+                                    });
+                                });
+                            });
+                        </script>
+                        
+
+    {% include "includes/footer.html" %}
+   </body>
+</html>

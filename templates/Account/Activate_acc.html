@@ -1,0 +1,70 @@
+{% autoescape off %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Activation</title>
+<style>
+    * {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    h2 {
+        text-align: center;
+        color: rgb(33, 42, 62);
+    }
+    h1 {
+        text-align: center;
+        color: #16bcdc;
+    }
+    p {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .btn {
+        display: block;
+        width: 200px;
+        margin: 0 auto;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        background-color: #16bcdc;
+        color: #0056b3;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+        color: #fff;
+    }
+    @media screen and (max-width: 600px) {
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        .btn {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h2>Account Activation</h2>
+        <h1>Hi {{user.username}}</h1>
+        <p>Your account is ready to be activated. Please click the button below to activate your account:</p>
+        <a href="{{domain}}{% url 'activate' uidb64=uid token=token %}" class="btn">Activate</a>
+    </div>
+</body>
+</html>
+{% endautoescape %}

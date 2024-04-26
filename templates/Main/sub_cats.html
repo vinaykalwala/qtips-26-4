@@ -1,0 +1,337 @@
+{% load static %}
+{% load product_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>QTiptore</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Place favicon.ico in the root directory -->
+
+      <!-- CSS here -->
+      <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+   </head>
+   <body>
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+    <!-- header-start -->
+   {% include "includes/header.html" %}
+     <!-- header-end -->
+
+    <!-- offcanvas area start -->
+    <div class="offcanvas__area">
+        <div class="offcanvas__wrapper">
+        <div class="offcanvas__close">
+            <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+                <i class="fal fa-times"></i>
+            </button>
+        </div>
+        <div class="offcanvas__content">
+            <div class="offcanvas__logo mb-40">
+                <a href="/">
+                    <h1>VCart</h1>
+                </a>
+            </div>
+
+            <div class="mobile-menu fix"></div>
+            <div class="offcanvas__action">
+
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- offcanvas area end -->
+    <div class="body-overlay"></div>
+    <!-- offcanvas area end -->
+
+    <main>
+        <!-- breadcrumb__area-start -->
+        <section class="breadcrumb__area box-plr-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="breadcrumb__wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="/">Home</a></li>/
+                                  <li class="active">Shop</li>
+                                </ol>
+                              </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb__area-end -->
+
+        <!-- shop-area-start -->
+        <div class="shop-area mb-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4">
+                        <div class="product-widget mb-30">
+                            <h5 class="pt-title">Product categories</h5>
+                            <div class="widget-category-list mt-20">
+                                <form action="#">
+
+                                <h3>{{sub_category_.0.name}}</h3>
+                                  <ul>
+
+                                      {% for i in sub_category_ %}
+                                      <li>
+
+                                          <div class="single-widget-category">
+                                              <ul>
+                                                  <li style="width: 100%;"><a href="{% url 'PRODUCTS' sub_category_=i.id %}" id="{{i.id}}" class="Types_list list" style="display: flex;justify-content: space-between;">{{i.name|capfirst}} <span>({{i.product_set.all.count}})</span></a></li>
+                                                </ul>
+
+                                            </div>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="product-widget mb-30">
+                            <h5 class="pt-title">Special Offers</h5>
+                            <div class="product__sm mt-20">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="shop-banner mb-30">
+                            <div class="banner-image">
+                                <img class="banner-l" src="{% static 'assets/img/banner/sl-banner.jpg' %}" alt="">
+                                <img class="banner-sm" src="{% static 'assets/img/banner/sl-banner-sm.png' %}" alt="">
+                                <div class="banner-content text-center">
+                                    <p class="banner-text mb-30">Hurry Up! <br> Free Shipping All Order Over $99</p>
+                                    <a href="shop.html" class="st-btn-d b-radius">Discover now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-lists-top">
+                            <div class="product__filter-wrap">
+                                <div class="row align-items-center">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                        <div class="product__filter d-sm-flex align-items-center">
+                                            <div class="product__col">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link active" id="FourCol-tab" data-bs-toggle="tab" data-bs-target="#FourCol" type="button" role="tab" aria-controls="FourCol" aria-selected="true">
+                                                        <i class="fal fa-th"></i>
+                                                      </button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                      <button class="nav-link" id="FiveCol-tab" data-bs-toggle="tab" data-bs-target="#FiveCol" type="button" role="tab" aria-controls="FiveCol" aria-selected="false">
+                                                        <i class="fal fa-list"></i>
+                                                      </button>
+                                                    </li>
+                                                  </ul>
+                                            </div>
+                                            <div class="product__result pl-60">
+                                                <p>Showing {{ products.start_index }}-{% if products.has_next %}{{ products.end_index }}{% else %}{{ products.paginator.count }}{% endif %} of {{ products.paginator.count }} results</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                        <div class="product__filter-right d-flex align-items-center justify-content-md-end">
+                                            <div class="product__sorting product__show-no">
+                                                <select>
+                                                    <option>10</option>
+                                                    <option>20</option>
+                                                    <option>30</option>
+                                                    <option>40</option>
+                                                </select>
+                                            </div>
+                                            <div class="product__sorting product__show-position ml-20">
+                                                <select>
+                                                    <option>Latest</option>
+                                                    <option>New</option>
+                                                    <option>Up comeing</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                        <div class="tab-content" id="productGridTabContent">
+                            <div class="tab-pane fade  show active" id="FourCol" role="tabpanel" aria-labelledby="FourCol-tab">
+                                <div class="tp-wrapper">
+                                    <div class="row g-0" id="filteredProducts">
+                                        {% include "ajax/product.html" %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tp-pagination text-center">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="basic-pagination pt-30 pb-30">
+                    <nav>
+                        <ul>
+                            {% for page_num in products.paginator.page_range %}
+                                <li>
+                                    <a href="?categories={{ request.GET.categories }}&sub_category={{ request.GET.sub_category }}&brands={{ request.GET.brands }}&page={{ page_num }}" {% if page_num == products.number %}class="active"{% endif %}>{{ page_num }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- shop-area-end -->
+
+        <!-- shop modal start -->
+        {% for i in products %}
+
+
+        <div class="modal fade" id="productModalId-{{forloop.counter}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+                <div class="modal-content">
+                    <div class="product__modal-wrapper p-relative">
+                        <div class="product__modal-close p-absolute">
+                            <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                        </div>
+                        <div class="product__modal-inner">
+                            <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-box">
+                                    <div class="tab-content" id="modalTabContent">
+                                        <div class="tab-pane fade show active" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
+                                            <div class="product__modal-img w-img">
+                                                <img src="{{i.image.url}}" alt="">
+                                            </div>
+                                        </div>
+
+                                        {% for j in i.product_image_set.all %}
+                                        <div class="tab-pane fade show" id="nav{{j.id}}" role="tabpanel" aria-labelledby="nav{{j.id}}-tab">
+                                            <div class="product__modal-img w-img">
+                                                <img src="{{j.image_url}}" alt="">
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+
+
+                                        </div>
+                                    <ul class="nav nav-tabs" id="modalTab" role="tablist">
+                                        {% for j in i.product_image_set.all %}
+
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="nav{{j.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{j.id}}" type="button" role="tab" aria-controls="nav{{j.id}}" aria-selected="true">
+                                                <img src="{{j.image_url}}" style="height: 8rem;" alt="">
+                                            </button>
+                                        </li>
+                                        {% endfor %}
+
+                                        </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product__modal-content">
+                                    <h4><a href="#" style='word-wrap: break-word; overflow-wrap: break-word;'>{{i.name|capfirst}}</a></h4>
+                                    <div class="product__review d-sm-flex">
+                                        <div class="rating rating__shop mb-10 mr-30">
+                                        <ul>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                        </ul>
+                                        </div>
+                                        <div class="product__add-review mb-15">
+                                        <span>01 review</span>
+                                        </div>
+                                    </div>
+                                    <div class="product__price">
+                                        <span> &#8377 {{i.price}}</span>
+                                    </div>
+                                    <div class="product__modal-des mt-20 mb-15" style="height: 15rem;overflow-y: scroll;">
+                                        <ul>
+
+                                            <!-- <li>{{ i.Product_info|safe }}</li> -->
+                                            <li>{{ i.Product_info|safe }}</li>
+
+                                        </ul>
+                                    </div>
+                                    <div class="product__stock mb-20">
+                                        <span class="mr-10">Availability :</span>
+                                        <span>{{i.Availability}} in stock</span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- shop modal end -->
+
+    </main>
+
+    <!-- footer-start -->
+    {% include 'includes/footer.html' %}
+    <!-- footer-end -->
+
+      <!-- JS here -->
+      <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+      <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+      <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+      <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+      <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+      <script src="{% static 'assets/js/parallax.js' %}"></script>
+      <script src="{% static 'assets/js/backtotop.js' %}"></script>
+      <script src="{% static 'assets/js/nice-select.js' %}"></script>
+      <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+      <script src="{% static 'assets/js/counterup.js' %}"></script>
+      <script src="{% static 'assets/js/ui-slider-range.js' %}"></script>
+      <script src="{% static 'assets/js/wow.js' %}"></script>
+      <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+      <script src="{% static 'assets/js/main.js' %}"></script>
+
+   </body>
+
+</html>

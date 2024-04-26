@@ -1,0 +1,672 @@
+
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<meta name="google-adsense-account" content="ca-pub-7189560920705164">
+<script src="https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/qtip2/3.0.3/jquery.qtip.min.css">
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('#authenticatedDropdown a[href="/auth/logout/"]').addEventListener('click', function(event) {
+          event.preventDefault();
+          Swal.fire({
+              title: 'Are you sure?',
+              text: 'You will be logged out.',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, logout'
+          }).then((result) => {
+              if (result.isConfirmed) {
+                  window.location.href = event.target.href; // Proceed with logout action
+              }
+          });
+      });
+  });
+</script>
+
+{% load static %}
+<style>
+   body a{
+    text-decoration: none;
+}
+
+.cat__menu{
+
+    display:none;
+}
+div#cat__menu.expanded{
+    display:block;
+}
+#tooltip {
+  position: absolute;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1;
+}
+
+</style>
+<style>
+    .navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+.dropdown-content {
+  display: none;
+  position: fixed;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.header__bottom {
+    /* background-color: #fffff */
+    border-radius: 0; /* Initial border radius */
+    margin: 0; /* Initial margin */
+    position: relative;
+    transition: border-radius 0.3s ease, margin 0.3s ease, position 0.3s ease;
+    height: auto; /* Auto height initially */
+    overflow: visible;
+}
+
+.header__bottom.appear {
+    position: fixed;
+    background-color: rgb(33, 42, 62,0.9); /* Slightly transparent white background */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    z-index: 19;
+    top: 0;
+    left: 0;
+    width: 98%;
+    {% comment %} border-radius: 3rem; /* Border radius when scrolled */ {% endcomment %}
+    {% comment %} margin: 1rem; /* Margin when scrolled */ {% endcomment %}
+    {% comment %} transition-delay: 0.3s; /* Delay the transition to give time for the header to disappear */ {% endcomment %}
+    backdrop-filter: blur(10px); /* Blurred background */
+}
+
+
+::-webkit-scrollbar {
+  width: 5px !important;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey !important;  */
+  background-color: #212A3E;
+  border-radius: 5px !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #3f96cd !important;
+  border-radius: 5px !important;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3f96cd !important;
+}
+#toggle{
+  /* padding: 10px 10px; */
+  margin: 3px;
+}
+#toggle:hover{
+  border-radius: 2rem;
+}
+
+
+    .header_list::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0; /* Initial width set to 0 */
+        height: 2px; /* Set the height of the underline */
+        background-color: #3f96cd; /* Set the underline color */
+        transition: width 0.3s ease; /* Add transition for width with ease effect */
+    }
+
+    .header_list:hover::before {
+        width: 100%; /* Increase width to 100% on hover */
+    }
+
+</style>
+
+{% load product_tags %}
+<header class="header d-blue-bg" style="background-color:#212A3E">
+    <div class="header-top">
+        <div class="container custom-conatiner">
+            <!--<div class="header-inner">-->
+    <!--            {% if user.is_authenticated %}-->
+    <!--            <div class="row align-items-center">-->
+    <!--                <div class="col-xl-6 col-lg-7">-->
+    <!--                    <div class="header-inner-start">-->
+
+    <!--                        <div class="support d-none d-sm-block">-->
+
+
+    <!--                                {% for message in messages %}-->
+    <!--    <p class="warning_cancel_p" ><a href="{% url 'my_account' %}">{{message}}</a> <button class="warning_cancel" onclick="disable()" style="display: '{{diss}}';">x</button></lp>-->
+    <!--{% endfor %}-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+    <!--                </div>-->
+    <!--            </div>-->
+    <!--            {% endif %}-->
+
+            <!--</div>-->
+            <div class="header-inner">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="header-inner-start">
+                                <div class="header__currency">
+                                    <div class="s-name">
+                                        <span><i class='fas fa-location-arrow'></i>: </span>
+                                    </div>
+                                    <li><a style="pointer-events:none">Your Location</a></li>
+                                </div>
+                                <!--<div class="support d-none d-sm-block">-->
+                                <!--    <p>Need Help? <a href="tel:+001123456789">+001 123 456 789</a></p>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-5 d-none d-lg-block">
+                            <div class="header-inner-end text-md-end">
+                                <div class="ovic-menu-wrapper ovic-menu-wrapper-2">
+                                    <ul>
+                                        <li><a class="header_list" href="/about/">About Us</a></li>
+                                        <li><a class="header_list" href="#">Order Tracking</a></li>
+                                        <li><a class="header_list" href="/contact/">Contact Us</a></li>
+                                        <li><a class="header_list" href="/faq/">FAQs</a></li>
+                                        <li><a class="header_list" href="/seller/">Seller</a></li>
+                                        <li>
+                                          <a class="header_list" href="/wishlist/">Wishlist</a>
+                                      </li>
+                                   
+                                      
+                                    
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="header-mid" style>
+            <div class="container custom-conatiner">
+                <div class="heade-mid-inner" style="padding:15px 0px">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                            <div class="header__info">
+                                <div class="logo">
+                                  <a href="/" class="logo-image"><h1><span style="color:#3f96cd">Q</span><span style="color:white">Tipstore</span></h1></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                            <div class="header__search">
+                                <form action="/search/">
+                                    <div class="header__search-box">
+                                        <input class="search-input search-input-2" type="text" placeholder="I'm shopping for..." style="padding-left:10px" name="query_pass">
+                                        <button class="button button-2" type="submit"><i class="far fa-search"></i></button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
+                            <div class="header-action">
+                                <!-- HTML -->
+    <!--<div class="header-action">-->
+    {% if user.is_authenticated %}
+        <!-- Section authenticated starts -->
+        <div class="block-userlink dropdown">
+            <a class="icon-link" href="#">
+                <i class="flaticon-user"></i>
+                <span class="text">
+                    <span class="sub">{{user.username}} </span>
+                    My Account
+                </span>
+            </a>
+            <div id="authenticatedDropdown" class="dropdown-content">
+              <a href="{% url 'profile' %}">Profile</a>
+             
+                <a href="#">Orders</a>
+                <a href="/auth/logout/">Logout</a>
+            </div>
+        </div>
+    {% else %}
+        <!-- Section unauthenticated starts -->
+        <div class="block-userlink dropdown">
+            <a class="icon-link" href="#">
+                <i class="flaticon-user"></i>
+                <span class="text">
+                    <span class="sub">Login </span>
+                    My Account
+                </span>
+            </a>
+            <div id="unauthenticatedDropdown" class="dropdown-content">
+                <a href="/auth/signup">Sign Up</a>
+                <a href="/auth/login">Login</a>
+            </div>
+        </div>
+    {% endif %}
+<!--</div>-->
+
+<!-- CSS -->
+
+
+<!-- JavaScript -->
+<script>
+    function toggleDropdown(dropdownId) {
+        var dropdown = document.getElementById(dropdownId);
+        dropdown.classList.toggle('active');
+    }
+</script>
+
+                                <!-- <div class="block-wishlist action">
+                                    <a class="icon-link icon-link-2" href="wishlist.html">
+                                    <i class="flaticon-heart"></i>
+                                    <span class="count count-2">0</span>
+                                    <span class="text">
+                                    <span class="sub">Favorite</span>
+                                    My Wishlist </span>
+                                    </a>
+                                </div> -->
+                                <style>
+                                    .cart__mini {
+                                      visibility: hidden;
+                                      z-index: 10;
+
+                                    }
+                                  </style>
+                                <div class="block-cart action">
+                                    <p class="icon-link icon-link-2" id="cart_section">
+                                        <i class="flaticon-shopping-bag"></i>
+                                        <span class="count count-2">{{cart_count}}</span>
+                                        <span class="text">
+                                          <span class="sub">Your Cart</span>
+
+                                        </span>
+                                      </p>
+                                    <div class="cart">
+                                        <div class="cart__mini" id="cartMini">
+                                            <ul>
+                                                <li>
+                                                  <div class="cart__title">
+                                                    <h4>Your Cart</h4>
+                                                    <!-- <span>(1 Item in Cart)</span> -->
+                                                  </div>
+                                                </li>
+
+
+
+                                                
+                                                <li>
+                                                    {% if cart_products|length < 1 %}
+                                                      <h4 style="text-align: center;">Your Cart is empty</h4>
+                                                    {% else %}
+                                                      {% with total_price=0 %}
+                                                        {% for value in cart_products %}
+                                                          {# Calculate subtotal by adding variant_price using the custom filter #}
+                                                          {% with total_price|add_price:value.variant_price as total_price %}
+                                                          <div class="cart__item d-flex justify-content-between align-items-center">
+                                                            <div class="cart__inner d-flex">
+                                                              <div class="cart__thumb">
+                                                                {% comment %} <a href="{% url 'product_detail' slug=value.product_slug variant_id=value.id %}">
+                                                                  <img src="{{value.variant_image_url.url}}" alt="">
+                                                                </a> {% endcomment %}
+                                                              </div>
+                                                              <div class="cart__details">
+                                                                {% comment %} <h6><a class="min" href="{% url 'product_detail' slug=value.product_slug variant_id=value.id %}">{{value.variant_title}}</a></h6> {% endcomment %}
+                                                                <div class="cart__price">
+                                                                  <span>&#8377;{{value.variant_price|floatformat:0}}</span>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="cart__del">
+                                                              <a href="#"><i class="fal fa-times"></i></a>
+                                                            </div>
+                                                          </div>
+                                                          {% endwith %}
+                                                        {% endfor %}
+                                                      {% endwith %}
+                                                    </li>
+                                                    <li>
+                                                      <div class="cart__sub d-flex justify-content-between align-items-center">
+                                                        <h6>Subtotal</h6>
+                                                        <span class="cart__sub-total">&#8377;{{ total_price|floatformat:2 }}</span>
+                                                      </div>
+                                                    </li>
+
+                                                <li>
+                                                    <a style="font-size:medium;color:black;width:100%;text-align:center;" href="/cart/cart-detail/" class="wc-cart mb-10">View cart</a>
+          <!--<a style="font-size:medium;color:black;width:100%;text-align:center;" href="#" id="clear-cart-link" class="wc-cart mb-10">Clear Cart</a>-->
+          <a style="font-size:medium;color:black;width:100%;text-align:center;" href="/checkout/" class="wc-checkout">Checkout</a>
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        const iconLink = document.getElementById('cart_section');
+                                        const cartMini = document.getElementById('cartMini');
+
+                                        iconLink.addEventListener('mouseover', () => {
+                                          cartMini.style.visibility = 'visible';
+                                        });
+
+                                        iconLink.addEventListener('mouseout', () => {
+                                          cartMini.style.visibility = 'hidden';
+                                        });
+
+                                        cartMini.addEventListener('mouseover', () => {
+                                          cartMini.style.visibility = 'visible';
+                                        });
+
+                                        cartMini.addEventListener('mouseout', () => {
+                                          cartMini.style.visibility = 'hidden';
+                                        });
+                                      </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+       <!-- Include the button and tooltip in your HTML template -->
+<button onclick="getLocation()" style="display: none;">Get My Location</button>
+<div id="tooltip" style="display: none;">This website wants to access your location.</div>
+<script>
+  // Function to display the location permission popup using QTip2
+  function displayPopup() {
+      var tooltipContent = "<div>This website wants to access your location.</div>";
+      tooltipContent += "<button id='allowLocation'>Allow</button>";
+      tooltipContent += "<button id='denyLocation'>Deny</button>";
+  
+      $("#tooltip").qtip({
+          content: {
+              text: tooltipContent
+          },
+          show: {
+              event: false,
+              ready: true
+          },
+          hide: false,
+          position: {
+              my: "center center",
+              at: "center center",
+              target: $(window)
+          },
+          style: {
+              classes: "qtip-bootstrap"
+          }
+      });
+  
+      $("#allowLocation").click(getLocation);
+      $("#denyLocation").click(function() {
+          $("#tooltip").qtip("hide");
+          alert("Location access denied.");
+      });
+  
+      // Trigger getLocation() after 5 seconds (5000 milliseconds)
+      setTimeout(getLocation, 5000);
+  }
+  
+  // Function to request location
+  function getLocation() {
+      var tooltip = document.getElementById("tooltip");
+      tooltip.style.display = "none"; // Hide tooltip
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          alert("Geolocation is not supported by this browser.");
+      }
+  }
+  
+  function showPosition(position) {
+      alert("Latitude: " + position.coords.latitude + 
+            "\nLongitude: " + position.coords.longitude);
+      // You can send the latitude and longitude to your Django backend using AJAX or a form submission
+  }
+  
+  // Automatically display location permission popup when the page loads
+  window.onload = displayPopup;
+  </script>
+  
+
+<script>
+  function getLocation() {
+      var tooltip = document.getElementById("tooltip");
+      tooltip.style.display = "block"; // Display tooltip
+      if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+          alert("Geolocation is not supported by this browser.");
+      }
+  }
+  
+  function showPosition(position) {
+      var tooltip = document.getElementById("tooltip");
+      tooltip.style.display = "none"; // Hide tooltip
+      alert("Latitude: " + position.coords.latitude + 
+            "\nLongitude: " + position.coords.longitude);
+      // You can send the latitude and longitude to your Django backend using AJAX or a form submission
+  }
+  </script>
+  
+    <div class="header__bottom">
+        <div class="container" style="display:flex;flex-direction: row;">
+            <div class="row g-0 align-items-center" style="flex-shrink: 1;width: 100%;">
+                <div class="col-lg-3" style="flex-shrink: 1;">
+                    <div class="cat__menu-wrapper side-border d-none d-lg-block">
+                        <div class="cat-toggle">
+
+                            <button type="button" id="toggle" class="cat-toggle-btn cat-toggle-btn-1"><i class="fal fa-bars"></i> Shop by department</button>
+                                <div class="cat__menu" id="cat__menu">
+                                    <nav id="mobile-menu" style="display: block;">
+                            <script>
+                               toggle.onclick = () => {
+                                cat__menu.classList.toggle("expanded");
+                                };
+
+                            </script>
+                                <!-- <nav id="mobile-menu" class="expander-content" style="display: block;"> -->
+                                    <ul>
+                                        <li>
+                                            <a style="pointer-events: none;">All Categories <i class="far fa-angle-down"></i></a>
+                                            <ul class="mega-menu">
+                                                {% for i in main_category %}
+                                                <li><a style="pointer-events:none" href="/sub_cats/?categories={{i.id}}">{{i.name}}</a>
+                                                    <ul class="mega-item">
+                                                        {% for j in i.categorie_set.all %}
+
+                                                        <li><a href="/sub_cats/?categories={{j.id}}">{{j.name}}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+
+                                        {% for i in main_category %}
+
+                                        <li>
+                                            <a href="" style="pointer-events: none;">{{i.name}}<i class="far fa-angle-down"></i></a>
+                                            <ul class="mega-menu mega-menu-2"  style="overflow-y:scroll">
+                                                {% for j in i.categorie_set.all %}
+
+                                                <li><a href="/sub_cats/?categories={{j.id}}">{{j.name}}</a>
+                                                    <ul class="mega-item">
+                                                        {% for k in j.sub_categorie_set.all %}
+
+                                                        <li><a href="/products/{{k.id}}">{{k.name}}</a></li>
+                                                        {% endfor %}
+
+                                                    </ul>
+                                                </li>
+                                                {% endfor %}
+
+                                            </ul>
+                                        </li>
+                                        {% endfor %}
+
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-3" style="flex-grow: 1;">
+                  <div class="header__bottom-left d-flex d-xl-block align-items-center justify-content-between">
+                    <div class="side-menu d-lg-none" style="margin:0 1rem">
+                      <!-- <button type="button" class="side-menu-btn offcanvas-toggle-btn"><i class="fas fa-bars"></i></button> -->
+                      <a class=" side-menu-btn" type="button" id='toggle-offcanvas'>
+                        <i class="fas fa-bars" style="font-size: larger;color: white;"></i>
+                      </a>
+                    </div>
+
+                    <div class="main-menu d-none d-lg-flex" >
+                        <nav>
+                          <ul>
+                            <li>
+                                <a href="/" class="header_list {% if current_page == 'home' %}active{% endif %}">Home</a>
+                            </li>
+                            <!--<li>-->
+                            <!--    <a href="/about/" class="header_list {% if current_page == 'about' %}active{% endif %}">About Us</a>-->
+                            <!--</li>-->
+                            <li class="has-mega">
+                                <a href="/cats/?mb_main_category=" class="header_list {% if current_page == 'shop' %}active{% endif %}">Shop</a>
+                              <div class="mega-menu" style="top:auto;width: 80%; padding:10px ;">
+  
+                                    <div class="container container-mega">
+                                      <ul style="display: flex; flex-wrap: nowrap;">
+                                            {% for i in main_category %}
+                                                <li style="display: inline-block;margin-right: 10px;" >
+                                                    <ul>
+                                                        <li class="title"><a href="#" style="pointer-events:none">{{i.name}}</a></li>
+                                                        {% for j in i.categorie_set.all %}
+                                                            <li><a href="/sub_cats/?categories={{j.id}}">{{j.name}}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="offer mt-40" style="border-radius:inherit;">
+                                        <p><b>20% OFF</b> the shipping of your first order with the code: <b>QTIP-SALE20</b></p>
+                                    </div>
+                                </div>
+                            </li>
+                            </ul>
+                            </nav>
+                            </div>
+                            <div class="header__search_md" style="width:70%;">
+                                <form role="search" method="get" action="/search/" style="width:100%;border-radius:2rem;">
+                                    <div class="header__search-box">
+                                        <input class="search-input" type="text" placeholder="I'm shopping for..." style="padding: 5px;height: 30px;width:100%;border-radius:2rem;" name="query_pass">
+                                        <button class="button" type="submit" style="padding: 5px;height: 30px;align-items: center;display: flex;border-radius:2rem;"><i class="far fa-search"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                            </div>
+                            </div>
+                          </header>
+<script>
+    // updated 2019
+const input = document.getElementById("search-input");
+const searchBtn = document.getElementById("search-btn");
+
+const expand = () => {
+  searchBtn.classList.toggle("close");
+  input.classList.toggle("square");
+};
+
+searchBtn.addEventListener("click", expand);
+
+
+
+
+//  old version / jquery
+//
+// function expand() {
+//   $(".search").toggleClass("close");
+//   $(".input").toggleClass("square");
+//   if ($('.search').hasClass('close')) {
+//     $('input').focus();
+//   } else {
+//     $('input').blur();
+//   }
+// }
+// $('button').on('click', expand);
+
+
+</script>
+<script>
+  window.addEventListener("scroll", function () {
+      var header = document.querySelector(".header");
+      var headerBottom = document.querySelector(".header__bottom");
+      var isScrolled = window.scrollY > header.offsetHeight;
+
+      headerBottom.classList.toggle("appear", isScrolled);
+  });
+</script>
+
+
+

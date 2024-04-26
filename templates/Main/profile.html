@@ -1,0 +1,489 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+    <script src="{% static 'assets\js\profile.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        /* styles.css */
+
+        /* Reset styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding-left: 270px; /* Adjust this value based on the actual sidebar width to prevent content overlap */
+        }
+        
+        .sidebar {
+            position: fixed;  /* Keeps the sidebar in place */
+            width: 250px;     /* Fixed width for the sidebar */
+            height: 100vh;    /* Full viewport height */
+            background-color: #3f51b5;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-y: auto; /* Allows scrolling within the sidebar if content exceeds screen height */
+            {% comment %} top: 0;           /* Aligns the top of the sidebar with the viewport */ {% endcomment %}
+            left: 0;          /* Aligns the sidebar along the left edge of the viewport */
+        }
+        
+        .sidebar h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+        
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .sidebar a:hover {
+            background-color: #6573c3;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;  /* Full width on smaller screens */
+                height: auto; /* Adjustable height for better fit */
+                position: relative; /* Change position to relative for mobile views */
+                border-radius: 0;  /* Optional: removes border-radius for a full-width design */
+            }
+            .container {
+                padding-left: 0; /* Removes padding on mobile to use full screen width */
+            }
+        }
+        
+        .content {
+            flex: 3;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .content h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .btn {
+            background-color: #3f51b5;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #6573c3;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #3f51b5;
+        }
+        
+        .order-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .order {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .order h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .order ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+        
+        .order ul li {
+            margin-bottom: 5px;
+        } 
+        {
+            % comment %
+        }
+        /* CSS for SMS Alert Preferences section */
+        
+        #SMS alert preferences {
+            padding: 20px;
+        }
+        
+        #SMS alert preferences .container1 {
+            max-width: 600px;
+            margin: auto;
+        }
+        
+        #SMS alert preferences h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        #SMS alert preferences .alert-preferences {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        
+        #SMS alert preferences .alert-preferences p {
+            margin-bottom: 20px;
+        }
+        
+        #SMS alert preferences .form-group {
+            margin-bottom: 15px;
+        }
+        
+        #SMS alert preferences .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        
+        #SMS alert preferences .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        /* Style checkboxes */
+        
+        #SMS alert preferences input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        
+        {
+            % endcomment %
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#profile-info" class="active">Personal Information</a></li>
+                <li><a href="#recent-orders">Recent Orders</a></li>
+                <li><a href="#account-settings">Account Settings</a></li>
+                <li><a href="#payments">Payments</a></li>
+                <li>
+                    <a href="/wishlist/" class="external">Wishlist</a>
+                </li>
+                
+                <li><a href="#SMS alert preferences">SMS alert Preferences</a></li>
+
+
+            </ul>
+        </aside>
+        <section class="content">
+            <div id="profile-info" class="content-section">
+                <h2>Personal Information</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" value="{{ user.username }}" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" value="{{ user.email }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" value="{{ user.phone }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" value="{{ user.location }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea id="address" readonly>Dilshuknagar, ShanthiNagar, 500060</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" value="{{ user.password }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" disabled>
+                            <option value="male" selected>Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+
+            <div id="recent-orders" class="content-section" style="display:none;">
+                <h2>Recent Orders</h2>
+                <div class="order-details">
+                    <div class="order">
+                        <h3>Order #1234</h3>
+                        <p>Placed on January 1, 2024</p>
+                        <ul>
+                            <li>Product: Product Name 1</li>
+                            <li>Price: $10.99</li>
+                            <li>Quantity: 2</li>
+                        </ul>
+                    </div>
+                    <div class="order">
+                        <h3>Order #1235</h3>
+                        <p>Placed on February 12, 2024</p>
+                        <ul>
+                            <li>Product: Product Name 2</li>
+                            <li>Price: $15.99</li>
+                            <li>Quantity: 1</li>
+                        </ul>
+                    </div>
+                    <div class="order">
+                        <h3>Order #1236</h3>
+                        <p>Placed on March 23, 2024</p>
+                        <ul>
+                            <li>Product: Product Name 3</li>
+                            <li>Price: $8.49</li>
+                            <li>Quantity: 3</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="account-settings" class="content-section" style="display:none;">
+                <h2>Account Settings</h2>
+                <!-- Button to trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Change Password
+</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Form for password change -->
+                                <form>
+                                    <div class="form-group">
+                                        <label for="oldPassword">Old Password</label>
+                                        <input type="password" class="form-control" id="oldPassword" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="newPassword">New Password</label>
+                                        <input type="password" class="form-control" id="newPassword" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="confirmPassword">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button type="button">Edit Personal Information</button>
+            </div>
+
+            <!-- HTML code for the Payments section -->
+            <div id="payments" class="content-section" style="display:none;">
+                <div class="container1">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <h2 class="text-center mb-4">Payments</h2>
+                            <div class="payment-options">
+                                <div class="payment-method">
+                                    <h3>Manage Payment Methods</h3>
+                                    <p>You can securely add, edit, or remove your payment methods such as credit cards, debit cards, or online payment services like PayPal.</p>
+                                </div>
+                                <div class="payment-Terms">
+                                    <h3>View Payment Terms</h3>
+                                    <ul>
+                                        <li>Full payment is required at the time of purchase for all online orders.</li>
+                                        <li>For services rendered, payment is due within [number] days of invoice date unless otherwise agreed upon in writing.</li>
+                                        <li>Custom orders require a [percentage]% non-refundable deposit at the time of order placement, with the balance due upon completion of the service or delivery of goods.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="payment-Terms">
+                                    <h3>Refunds and Cancellations</h3>
+                                    <ul>
+                                        
+                                        <li>Refunds are processed in accordance with our Refund Policy. Please refer to our Refund Policy [link or attachment] for detailed information.</li>
+                                        <li>Order cancellations must be made [number] hours prior to the scheduled delivery or service date to avoid a cancellation fee of [percentage]% of the total order value.</li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="help">
+                                    <h3>Need Help?</h3>
+                                    <p>If you encounter any issues or have questions regarding your payments, feel free to contact our customer support team. We're here to assist you.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!-- HTML code for SMS Alert Preferences section -->
+            <div id="SMS alert preferences" class="content-section" style="display:none;">
+                <div class="container2">
+                    <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                            <h2 class="text-center mb-4">SMS Alert Preferences</h2>
+                            <div class="alert-preferences">
+                                <p>Here you can manage your SMS alert preferences. Choose the type of alerts you want to receive and customize your notification settings.</p>
+                                <!-- Add form or options for managing SMS alert preferences -->
+                                <form>
+                                    <div class="form-group">
+                                        <label for="orderUpdates">Order Updates</label>
+                                        <input type="checkbox" id="orderUpdates" name="orderUpdates">
+                                        <label for="orderUpdates">Receive SMS alerts for order updates</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="promotionAlerts">Promotion Alerts</label>
+                                        <input type="checkbox" id="promotionAlerts" name="promotionAlerts">
+                                        <label for="promotionAlerts">Receive promotional SMS alerts</label>
+                                    </div>
+                                    <!-- Add more options for SMS alert preferences as needed -->
+                                    <button type="submit" class="btn btn-primary">Save Preferences</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.sidebar a').forEach(function(link) {
+            link.onclick = function(e) {
+                // Check if the link has a class 'external' and if so, allow default behavior
+                if (this.classList.contains('external')) {
+                    return; // This will not prevent the default behavior
+                }
+    
+                // Prevent default link behavior
+                e.preventDefault();
+    
+                // Remove active class from all links and hide all sections
+                document.querySelectorAll('.sidebar a').forEach(function(link) {
+                    link.classList.remove('active');
+                });
+                document.querySelectorAll('.content-section').forEach(function(section) {
+                    section.style.display = 'none';
+                });
+    
+                // Add active class to clicked link and show related section
+                this.classList.add('active');
+                var targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).style.display = 'block';
+            };
+        });
+    
+        // Optionally, trigger click on the first link to load the first section by default
+        document.querySelector('.sidebar a:not(.external)').click();
+    });
+</script>
+    
+</body>
+
+</html>

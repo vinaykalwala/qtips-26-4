@@ -1,0 +1,17 @@
+<!-- recently_viewed.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recently Viewed Images</title>
+</head>
+<body>
+    <h1>Recently Viewed Images</h1>
+    <ul>
+        {% for image in recently_viewed %}
+            <li><img src="{{ image.image.url }}" alt="Recently Viewed Image"></li>
+        {% empty %}
+            <li>No recently viewed images</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

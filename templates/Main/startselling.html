@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="selling.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        
+        body {
+            background-color: #f4f7fa;
+            /* Light gray background for contrast */
+            font-family: Arial, sans-serif;
+            /* Apply Google Font family */
+        }
+        
+        .container {
+            padding-top: 50px;
+            max-width: 960px;
+            /* Center the form better */
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .register-btn,
+        .otp-btn {
+            width: auto;
+            /* Adjust based on content size */
+            padding: 10px 20px;
+            /* Larger, easier to click */
+        }
+        
+        .register-btn {
+            background-color: #28a745;
+            /* Green */
+            border-color: #28a745;
+            /* Green */
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .otp-btn {
+            background-color: #007bff;
+            /* Bootstrap primary */
+            border-color: #007bff;
+            /* Bootstrap primary */
+            color: white;
+            border-radius: 10px;
+        }
+        
+        h2 {
+            color: #453F78;
+            margin-bottom: 30px;
+        }
+        
+        p {
+            color: #666;
+            font-size: 1rem;
+            font-family: Arial, sans-serif;
+        }
+        /* Improved Styling for OTP button */
+        
+        .otp-btn {
+            margin-left: 10px;
+        }
+        /* Styling for password requirements */
+        
+        #passwordHelpBlock {
+            margin-top: 5px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        /* Enhancing input fields */
+        
+        input[type="tel"],
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            border-radius: 10px;
+            /* Rounded borders for input fields */
+            border: 2px solid #ced4da;
+            padding: .375rem .75rem;
+            /* Bootstrap's default padding */
+        }
+        
+        input[type="tel"]:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+        }
+        /* Custom button styles for better UX */
+        
+        .btn-primary,
+        .btn-success {
+            cursor: pointer;
+            /* Cursor pointer to indicate clickable */
+            transition: all .2s;
+            /* Smooth transition for interaction */
+        }
+        
+        .btn-primary:hover,
+        .btn-success:hover {
+            transform: scale(1.05);
+            /* Slight increase in size on hover */
+        }
+        /* Media query for responsiveness */
+        
+        @media (max-width: 768px) {
+            .container {
+                padding-top: 20px;
+            }
+            h2 {
+                font-size: 1.5rem;
+                /* Smaller headings on small devices */
+            }
+        }
+        /* Custom CSS for the Login link */
+        
+        .top-right {
+            position: absolute;
+            top: 0;
+            right: 10px;
+        }
+        /* Added style for highlighting input fields */
+        
+        .invalid-input {
+            border-color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Login button -->
+
+        <div class="top-right">
+            <a href="" class="mr-2">Already a user?</a>
+            <button type="button" class="btn btn-primary">Login</button>
+        </div>
+
+
+        <div class="row">
+            <!-- Seller Registration Form -->
+            <div class="col-md-6 mb-4">
+                <h2>Seller Registration</h2>
+                <form action="#" method="post" id="registrationForm" onsubmit="return validateForm()">
+                    <div class="form-group">
+                        <label for="mobile">Mobile Number:</label>
+                        <input type="phone" id="mobile" name="mobile" class="form-control" placeholder="Enter your mobile number" required pattern="[0-9]{10}" maxlength="10">
+                        <button class="btn btn-primary otp-btn">Send OTP</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="otp">Enter OTP:</label>
+                        <input type="text" id="otp" name="otp" class="form-control" placeholder="Enter OTP" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Create Password:</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Create a password" required pattern="^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[a-zA-Z]).{8,}$">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Your password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+                        </small>
+                    </div>
+                    <button type="submit" class="btn btn-success register-btn">Create Account</button>
+                </form>
+            </div>
+            <!-- Store Information -->
+            <div class="col-md-6 ">
+                <h2>About Our Store</h2>
+                <p class="mb-4">Welcome to our ecommerce store! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod sem non urna aliquet, ac ultricies est lobortis. Fusce id eros nec mauris eleifend sagittis.</p>
+                <img class="img-fluid" src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1691998140/catalog/1690216163198943232/pspbmp2ometikcedeb8w.jpg" alt="store image">
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function validateForm() {
+            // Get form inputs
+            var mobileInput = document.getElementById("mobile");
+            var otpInput = document.getElementById("otp");
+            var emailInput = document.getElementById("email");
+            var passwordInput = document.getElementById("password");
+
+            // Validate mobile number
+            if (!mobileInput.value.match(/^\d{10}$/)) {
+                mobileInput.classList.add("invalid-input");
+                return false;
+            }
+
+            // Validate email
+            if (!emailInput.value.match(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/)) {
+                emailInput.classList.add("invalid-input");
+                return false;
+            }
+
+            // Validate password
+            if (!passwordInput.value.match(/^(?=.\d)(?=.[a-z])(?=.[A-Z])(?=.[a-zA-Z]).{8,}$/)) {
+                passwordInput.classList.add("invalid-input");
+                return false;
+            }
+
+            // You can add more validations for OTP, email, and password here if needed
+
+            return true; // Submit the form if all validations pass
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add event listener to all input fields
+            document.querySelectorAll("input").forEach(function(input) {
+                input.addEventListener("blur", function() {
+                    // Check if the field is empty
+                    if (this.value.trim() === "") {
+                        // If empty, add the invalid-input class
+                        this.classList.add("invalid-input");
+                    } else {
+                        // If not empty, remove the invalid-input class
+                        this.classList.remove("invalid-input");
+                    }
+                });
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Add event listener to all input fields
+            document.querySelectorAll().forEach(function(input) {
+                input.addEventListener("blur", function() {
+                    // Check if the field is empty
+                    if (this.value.trim() === "") {
+                        // If empty, add the invalid-input class
+                        this.classList.add("invalid-input");
+                    } else {
+                        // If not empty, remove the invalid-input class
+                        this.classList.remove("invalid-input");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

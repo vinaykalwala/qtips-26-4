@@ -1,0 +1,1107 @@
+{% load static %}
+{% load product_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>QTipstore</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'path/to/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static 'path/to/jquery-ui.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <style>
+    .color-circle {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+        /* Import Google Font - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+        .wrapper {
+            width: 400px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 25px 40px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        header h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        header p {
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        .price-input {
+            width: 100%;
+            display: flex;
+            margin: 30px 0 35px;
+        }
+
+        .price-input .field {
+            display: flex;
+            width: 100%;
+            height: 45px;
+            align-items: center;
+        }
+
+        .field input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            font-size: 19px;
+            margin-left: 12px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #999;
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .price-input .separator {
+            width: 130px;
+            display: flex;
+            font-size: 19px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider {
+            height: 5px;
+            position: relative;
+            background: #ddd;
+            border-radius: 5px;
+        }
+
+        .slider .progress {
+            height: 100%;
+            left: 25%;
+            right: 25%;
+            position: absolute;
+            border-radius: 5px;
+            background: #17a2b8;
+        }
+
+        .range-input {
+            position: relative;
+        }
+
+        .range-input input {
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            top: -5px;
+            background: none;
+            pointer-events: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            height: 17px;
+            width: 17px;
+            border-radius: 50%;
+            background: #17a2b8;
+            pointer-events: auto;
+            -webkit-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            height: 17px;
+            width: 17px;
+            border: none;
+            border-radius: 50%;
+            background: #17a2b8;
+            pointer-events: auto;
+            -moz-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Support */
+        .support-box {
+            top: 2rem;
+            position: relative;
+            bottom: 0;
+            text-align: center;
+            display: block;
+        }
+
+        .b-btn {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .b-btn.paypal i {
+            color: blue;
+        }
+
+        .b-btn:hover {
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .b-btn i {
+            font-size: 20px;
+            color: yellow;
+            margin-top: 2rem;
+        }
+        /* Add some basic styling, feel free to customize */
+.filter-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px; /* Add padding for better spacing */
+    border: 1px solid #ddd; /* Add a border to the entire form */
+    border-radius: 8px; /* Add some border-radius for rounded corners */
+}
+
+.filter-section {
+    margin-bottom: 20px;
+    border: 1px solid #ddd; /* Add a border to each section */
+    padding: 10px; /* Add padding for better spacing within sections */
+    border-radius: 4px; /* Add some border-radius for rounded corners */
+}
+
+.checkbox-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.search-input {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filter-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px; /* Add some border-radius for rounded corners */
+}
+.color-checkbox {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 1px solid #ccc;  /* You can customize the border color */
+}
+
+    </style>
+</head>
+
+<body>
+
+
+    <!-- back to top start -->
+    <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- back to top end -->
+
+    <!-- header-start -->
+    {% include "includes/header.html" %}
+    <!-- header-end -->
+
+    <!-- offcanvas area start -->
+    <div class="offcanvas__area">
+        <div class="offcanvas__wrapper">
+            <div class="offcanvas__close">
+                <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+                    <i class="fal fa-times"></i>
+                </button>
+            </div>
+            <div class="offcanvas__content">
+                <div class="offcanvas__logo mb-40">
+                    <a href="/">
+                        <h1>VCart</h1>
+                    </a>
+                </div>
+                <div class="offcanvas__search mb-25">
+                    {% if request.session.cart|length < 1 %} <h4 style="text-align: center;">Your Cart is empty</h4>
+                        {% else %}
+                        {% for key,value in request.session.cart.items %}
+                        <div class="cart__item d-flex justify-content-between align-items-center">
+                            <div class="cart__inner d-flex">
+                                <div class="cart__thumb">
+                                    <a href="product-details.html">
+                                        <img src="{{value.image}}" alt="">
+                                    </a>
+                                </div>
+                                <div class="cart__details">
+                                    <h6><a href="{% url 'product_detail' slug=variant.slug product_id=variant.id %}"> {{value.name}}</a></h6>
+                                    <div class="cart__price">
+                                        <span>&#8377;{{value.price|floatformat:0}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cart__del">
+                                <a href="{% url 'item_clear' key  %}"><i class="fal fa-times"></i></a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div>
+                            <li>
+                                <a href="/cart/cart-detail/" class="wc-cart mb-10">View cart</a>
+                                <a href="/checkout/" class="wc-checkout">Checkout</a>
+                            </li>
+                        </div>
+                        {% endif %}
+                </div>
+                <div class="mobile-menu fix"></div>
+                <div class="offcanvas__action">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- offcanvas area end -->
+    <div class="body-overlay"></div>
+    <!-- offcanvas area end -->
+
+    <main>
+        <!-- breadcrumb__area-start -->
+        <section class="breadcrumb__area box-plr-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="breadcrumb__wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>/
+                                    <li class="active">Shop</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb__area-end -->
+
+        <!-- shop-area-start -->
+        <div class="shop-area mb-20">
+            <div class="container">
+                <div class="row">
+<!--                    <div class="col-xl-3 col-lg-4">-->
+<!--                    <form method="get" action="{% url 'search' %}" class="filter-form">-->
+<!--    <div class="filter-section">-->
+<!--        <h4>Colors:</h4>-->
+<!--        <div class="filter-options">-->
+<!--            {% for color in unique_colors %}-->
+            <!-- Place this wherever you want to display the cart count -->
+
+<!--                <label class="checkbox-label" style="display:flex;justify-content:space-between">-->
+<!--                    <span>-->
+<!--                    <input type="checkbox" name="color" value="{{ color.color__name }}" {% if color.color__name in selected_colors %}checked{% endif %}>-->
+<!--{{ color.color__name }}</span>-->
+<!--<span class="color-checkbox" style="background-color: {{ color.color__name }}"></span>-->
+<!--                </label>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="filter-section">-->
+<!--        <h4>Brands:</h4>-->
+<!--        <div class="filter-options">-->
+<!--            {% for brand in unique_brands %}-->
+<!--                <label class="checkbox-label">-->
+<!--                    <input type="checkbox" name="brand" value="{{ brand.product__brand__Brand_name }}" {% if brand.product__brand__Brand_name in selected_brands %}checked{% endif %}>-->
+<!--                    {{ brand.product__brand__Brand_name }}-->
+<!--                </label>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="filter-section">-->
+<!--        <h4>Sizes:</h4>-->
+<!--        <div class="filter-options">-->
+<!--            {% for size in unique_sizes %}-->
+<!--                <label class="checkbox-label">-->
+<!--                    <input type="checkbox" name="size" value="{{ size.size__name }}" {% if size.size__name in selected_sizes %}checked{% endif %}>-->
+<!--                    {{ size.size__name }}-->
+<!--                </label>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<!--        <input type="text" hidden name="query_pass" value="{{ searched_query }}" placeholder="Enter search query" class="search-input">-->
+
+<!--    <button type="submit" class="filter-btn">Apply Filters</button>-->
+<!--</form>-->
+
+
+
+<!--                    </div>-->
+
+
+
+
+                    <div class="col-xl-12 col-lg-11">
+                        <div class="shop-banner mb-30">
+                            <div class="banner-image">
+                                <img class="banner-l" src="{% static 'assets/img/banner/sl-banner.jpg' %}" alt="">
+                                <img class="banner-sm" src="{% static 'assets/img/banner/sl-banner-sm.png' %}" alt="">
+                                <div class="banner-content text-center">
+                                    <p class="banner-text mb-30">Hurry Up! <br> Free Shipping All Order Over $99</p>
+                                    <a href="shop.html" class="st-btn-d b-radius">Discover now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-lists-top">
+                            <div class="product__filter-wrap">
+                                <div class="row align-items-center">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                        <div class="product__filter d-sm-flex align-items-center">
+                                            <div class="product__col">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active" id="FourCol-tab"
+                                                            data-bs-toggle="tab" data-bs-target="#FourCol" type="button"
+                                                            role="tab" aria-controls="FourCol" aria-selected="true">
+                                                            <i class="fal fa-th"></i>
+                                                        </button>
+                                                    </li>
+                                               
+                                                </ul>
+                                            </div>
+                                            <div class="product__result pl-60">
+                                                <p>Showing {{ variants.start_index }}-{{ variants.end_index }} of {{ variants.paginator.count }} results for : <strong>{{ searched_query }}</strong></p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="productGridTabContent">
+                            <div class="tab-pane fade  show active" id="FourCol" role="tabpanel"
+                                aria-labelledby="FourCol-tab">
+                                <div class="tp-wrapper">
+                                    <div class="row g-0" id="filteredProducts">
+
+                                        {% load product_tags %}
+
+                                        {% for variant in variants %}
+<div class="col-xl-2 col-lg-3 col-md-4 col-sm-4">
+    <div class="product__item product__item-d"
+        style="width: auto;height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+        <div class="product__thumb fix">
+            <div class="product-image w-img">
+                <a href="#">
+                <!-- <a href="variant.product.get_absolute_url "> -->
+                    <img src="{{ variant.image.url }}" style="object-fit: cover;" alt="product">
+                </a>
+            </div>
+            <div class="product-action">
+                <!-- Add your product action buttons here -->
+            </div>
+        </div>
+        <div class="product__content-3">
+            <h6>
+                <a href="/product_detail/{{ variant.slug }}&{{ variant.id }}">
+    
+     {% if variant.name|length > 60 %}
+             {{variant.name|title|slice:60 }}...
+        {% else  %}
+             {{variant.name|title }}
+        {% endif %}
+</a>
+
+            </h6>
+            <div class="rating mb-5">
+                <!-- Add your product rating logic here -->
+            </div>
+            <div>
+                <span style="text-decoration:line-through;font-size:small"><span>&#8377</span>{{ variant.price|floatformat:0 }}</span>
+            </div>
+            <div class="price mb-10">
+                <span> <span>&#8377</span>
+                    {% calculate_pricetag variant.price variant.Discount %}
+                </span>
+            </div>
+        </div>
+        <div class="product__add-cart-s text-center">
+            <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
+                data-bs-toggle="modal" data-bs-target="#productModalId-{{ forloop.counter }}">
+                Quick View
+            </button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+
+                                        <!-- {% if product.variants.all %}
+                                                            <button type="button" class="variant-btn wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#variantModal-{{ forloop.counter }}">
+                                                                View Variants
+                                                            </button>
+                                                        {% endif %}
+
+                                                        </div>
+                                                        <!-- Variant Modal --
+                                            <div class="modal fade" id="variantModal-{{ forloop.counter }}" tabindex="-1" aria-labelledby="variantModalLabel-{{ forloop.counter }}" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="variantModalLabel-{{ forloop.counter }}">Variants for {{ product.name }}</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <!-- Display variant details here --
+                                                            {% for variant in product.variants.all %}
+                                                                <p>
+                                                                    Variant: {{ variant.title }} -
+                                                                    Price: {{ variant.price }} -
+                                                                    Image: <img src="{{ variant.image.url }}" alt="{{ variant.title }}" height="50">
+                                                                    <!-- Add a link to view the selected variant --
+                                                                    <a href="{% url 'product_detail' product.slug %}?variant={{ variant.id }}" >View Variant</a>
+                                                                </p>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="FiveCol" role="tabpanel" aria-labelledby="FiveCol-tab">
+                                <div class="tp-wrapper-2">
+                                    {% for variant in variants %}
+                                    <div class="single-item-pd">
+    <div class="row align-items-center">
+        <div class="col-xl-9">
+            <div class="single-features-item single-features-item-df b-radius mb-20">
+                <div class="row g-1 align-items-center">
+                    <div class="col-md-4">
+                        <div class="features-thum">
+                            <div class="features-product-image w-img">
+                                <a href="{% url 'product_detail' slug=variant.slug product_id=variant.id %}">
+                                    <img src="/media/{{ variant.image.url }}" alt="">
+                                </a>
+                            </div>
+                            <div class="product__offer">
+                                <span class="discount">-{{variant.Discount}}%</span>
+                            </div>
+                            <div class="product-action">
+                                <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                    <i class="fal fa-eye"></i>
+                                    <i class="fal fa-eye"></i>
+                                </a>
+                                <a href="#" class="icon-box icon-box-1">
+                                    <i class="fal fa-heart"></i>
+                                    <i class="fal fa-heart"></i>
+                                </a>
+                                <a href="#" class="icon-box icon-box-1">
+                                    <i class="fal fa-layer-group"></i>
+                                    <i class="fal fa-layer-group"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="product__content product__content-d">
+                            <h6>
+                                <a href="{% url 'product_detail' slug=variant.slug product_id=variant.id %}">
+                                    {{ variant.title|title }}
+                                </a>
+                            </h6>
+                            <div class="rating mb-5">
+                                <ul class="rating-d">
+                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                </ul>
+                                <span>(01 review)</span>
+                            </div>
+                            <div class="features-des">
+                                <ul>
+                                    <li><strong>Color:</strong> <span class="color-circle" style="background-color: {{ variant.color.code }};"></span> {{ variant.color.name }}</li>
+        <li><strong>Size:</strong> {{ variant.size.name }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3">
+            <div class="product-stock mb-15">
+                <h5>Availability: <span> {{variant.Availability}}</span></h5>
+                <li><strong>Price:</strong><span> &#8377;{{ variant.price|floatformat:0 }}</span></li>
+            </div>
+            <div class="stock-btn ">
+                <!--<button type="button" onclick="addToCart('{{ variant.id|stringformat:"s" }}')" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">-->
+                <!--    Add to Cart-->
+                <!--</button>-->
+                {% if variant.id|stringformat:"s" in cart_products_ids_list %}
+                                        <a type="button" href="javascript:void(0);" onclick="addToCart('{{ variant.id|stringformat:"s" }}', this)"
+                                           class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100 added">
+                                            Added
+                                        </a>
+                                    {% else %}
+                <a type="button" href="javascript:void(0);" onclick="addToCart('{{ variant.id|stringformat:"s" }}', this)" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+    Add to Cart
+</a>{% endif %}
+                <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100"
+                    data-bs-toggle="modal" data-bs-target="#productModalId">
+                    Quick View
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tp-pagination text-center">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="basic-pagination pt-30 pb-30">
+                <nav>
+                    <ul>
+                        {% for page_num in variants.paginator.page_range %}
+                            <li>
+                                <a href="?query_pass={{ request.GET.query_pass }}&page={{ page_num }}" {% if page_num == variants.number %}class="active"{% endif %}>{{ page_num }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- shop-area-end -->
+
+        <!-- shop modal start -->
+        {% for i in products %}
+
+
+        <div class="modal fade" id="productModalId-{{forloop.counter}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+                <div class="modal-content">
+                    <div class="product__modal-wrapper p-relative">
+                        <div class="product__modal-close p-absolute">
+                            <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                        </div>
+                        <div class="product__modal-inner">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="product__modal-box">
+                                        <div class="tab-content" id="modalTabContent">
+                                            <div class="tab-pane fade show active" id="nav1" role="tabpanel"
+                                                aria-labelledby="nav1-tab">
+                                                <div class="product__modal-img w-img">
+                                                    <img src="/media/{{i.image}}" alt="">
+                                                </div>
+                                            </div>
+
+                                            {% for j in i.product_image_set.all %}
+                                            <div class="tab-pane fade show" id="nav{{j.id}}" role="tabpanel"
+                                                aria-labelledby="nav{{j.id}}-tab">
+                                                <div class="product__modal-img w-img">
+                                                    <img src="{{j.image_url}}" alt="">
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+
+
+
+                                        </div>
+                                        <ul class="nav nav-tabs" id="modalTab" role="tablist">
+                                            {% for j in i.product_image_set.all %}
+
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="nav{{j.id}}-tab" data-bs-toggle="tab"
+                                                    data-bs-target="#nav{{j.id}}" type="button" role="tab"
+                                                    aria-controls="nav{{j.id}}" aria-selected="true">
+                                                    <img src="{{j.image_url}}" style="height: 8rem;" alt="">
+                                                </button>
+                                            </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="product__modal-content">
+                                        <h4><a href="product-details.html">{{i.name|capfirst}}</a></h4>
+                                        <div class="product__review d-sm-flex">
+                                            <div class="rating rating__shop mb-10 mr-30">
+                                                <ul>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product__add-review mb-15">
+                                                <span>01 review</span>
+                                            </div>
+                                        </div>
+                                        <div class="product__price">
+                                            <span> &#8377 {{i.price}}</span>
+                                        </div>
+                                        <div class="product__modal-des mt-20 mb-15"
+                                            style="height: 15rem;overflow-y: scroll;">
+                                            <ul>
+
+                                                <!-- <li>{{ i.Product_info|safe }}</li> -->
+                                                <li>{{ i.Product_info|safe }}</li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="product__stock mb-20">
+                                            <span class="mr-10">Availability :</span>
+                                            <span>{{i.Availability}} in stock</span>
+                                        </div>
+                                        <div class="product__modal-form">
+                                            <form action="#">
+                                                <div class="pro-quan-area d-lg-flex align-items-center">
+                                                    <div class="product-quantity mr-20 mb-25">
+                                                        <div class="cart-plus-minus p-relative"><input type="text"
+                                                                value="1" /></div>
+                                                    </div>
+                                                    <div class="pro-cart-btn mb-25">
+                                                        <a class="cart-btn" href="{% url 'cart_add_shop' i.id %}"
+                                                            type="submit">Add to Cart</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="product__stock mb-30">
+                                            <ul>
+                                                <li><a href="#">
+                                                        <span class="sku mr-10">SKU:</span>
+                                                        <span>Samsung C49J89: £875, Debenhams Plus</span></a>
+                                                </li>
+                                                <li><a href="#">
+                                                        <span class="cat mr-10">Categories:</span>
+                                                        <span>
+                                                            <cus>{{i.Category}}</cus>
+                                                        </span></a>
+                                                </li>
+                                                <li><a href="#">
+                                                        <span class="tag mr-10">Tags:</span>
+                                                        <span>{{i.Tags}}</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- shop modal end -->
+
+    </main>
+
+    <!-- footer-start -->
+    <footer>
+        <div class="fotter-area d-dark-bg">
+            <div class="footer__top pt-80 pb-15">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-4 order-last-md">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="footer__widget">
+                                        <div class="footer__widget-title">
+                                            <h4>Customer Care</h4>
+                                        </div>
+                                        <div class="footer__widget-content">
+                                            <div class="footer__link">
+                                                <ul>
+                                                    <li><a href="faq.html">New Customers</a></li>
+                                                    <li><a href="faq.html">How to use Account</a></li>
+                                                    <li><a href="faq.html">Placing an Order</a></li>
+                                                    <li><a href="faq.html">Payment Methods</a></li>
+                                                    <li><a href="faq.html">Delivery &amp; Dispatch</a></li>
+                                                    <li><a href="faq.html">Problems with Order</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6">
+                                    <div class="footer__widget">
+                                        <div class="footer__widget-title">
+                                            <h4>Customer Service</h4>
+                                        </div>
+                                        <div class="footer__widget-content">
+                                            <div class="footer__link">
+                                                <ul>
+                                                    <li><a href="faq.html">Help Center</a></li>
+                                                    <li><a href="faq.html">Contact Us</a></li>
+                                                    <li><a href="faq.html">Report Abuse</a></li>
+                                                    <li><a href="faq.html">Submit a Dispute</a></li>
+                                                    <li><a href="faq.html">Policies &amp; Rules</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-8 order-first-md">
+                            <div class="footer__top-left">
+                                <div class="row">
+
+                                    <div class="col-xl-7 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="row">
+
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                                <div class="footer__widget">
+                                                    <div class="footer__widget-title">
+                                                        <h4>My Account</h4>
+                                                    </div>
+                                                    <div class="footer__widget-content">
+                                                        <div class="footer__link">
+                                                            <ul>
+                                                                <li><a href="/">Product Support</a></li>
+                                                                <li><a href="checkout.html">Checkout</a></li>
+                                                                <li><a href="/cart/cart-detail/">Shopping Cart</a></li>
+                                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                                <li><a href="faq.html">Terms &amp; Conditions &amp;</a>
+                                                                </li>
+                                                                <li><a href="faq.html">Redeem Voucher</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                                <div class="footer__widget">
+                                                    <div class="footer__widget-title">
+                                                        <h4>Quick Links</h4>
+                                                    </div>
+                                                    <div class="footer__widget-content">
+                                                        <div class="footer__link">
+                                                            <ul>
+                                                                <li><a href="/contact/">Store Location</a></li>
+                                                                <li><a href="/my-account/">My account</a></li>
+                                                                <li><a href="/">Order Tracking</a></li>
+                                                                <li><a href="/">FAQs</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="footer__widget">
+                                            <div class="footer__widget-title mb-20">
+                                                <h4>About The Store</h4>
+                                            </div>
+                                            <div class="footer__widget-content">
+                                                <p class="footer-text mb-35">Our mission statement is to provide the
+                                                    absolute best customer experience available in the Electronic
+                                                    industry without exception.</p>
+                                                <div class="footer__hotline d-flex align-items-center mb-10">
+                                                    <div class="icon mr-15">
+                                                        <i class="fal fa-headset"></i>
+                                                    </div>
+                                                    <div class="text">
+                                                        <h4>Got Question? Call us 24/7!</h4>
+                                                        <span><a href="tel:100-123-456-7890">(+100) 123 456
+                                                                7890</a></span>
+                                                    </div>
+                                                </div>
+                                                <div class="footer__info">
+                                                    <ul>
+                                                        <li>
+                                                            <span>Add: <a target="_blank"
+                                                                    href="https://goo.gl/maps/c82DDZ8ALvL878Bv8">Walls
+                                                                    Street 68, Mahattan, New York, USA</a></span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <div class="container">
+                    <div class="footer__bottom-content pt-55 pb-45">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="footer__links text-center mb-25">
+                                    <p>
+                                        <a href="faq.html">Online Shopping</a>
+                                        <a href="faq.html">Promotions</a>
+                                        <a href="faq.html">My Orders</a>
+                                        <a href="faq.html">Help</a>
+                                        <a href="faq.html">Customer Service</a>
+                                        <a href="faq.html">Support</a>
+                                        <a href="faq.html">Most Populars</a>
+                                        <a href="faq.html">New Arrivals</a>
+                                        <a href="faq.html">Special Products </a>
+                                        <a href="faq.html">Manufacturers</a>
+                                        <br>
+                                        <a href="faq.html">Garden Equipments</a>
+                                        <a href="faq.html">Powers And Hand Tools </a>
+                                        <a href="faq.html">Utensil &amp; Gadget </a>
+                                        <a href="faq.html">Printers</a>
+                                        <a href="faq.html">Projectors</a>
+                                        <a href="faq.html">Scanners</a>
+                                        <a href="faq.html">Store</a>
+                                        <a href="faq.html">Business</a>
+                                    </p>
+                                </div>
+                                <div class="payment-image text-center mb-25">
+                                    <a href="contact.html"><img src="{% static 'assets/img/payment/payment.png' %}"
+                                            alt=""></a>
+                                </div>
+                                <div class="copy-right-area text-center">
+                                    <p>Copyright © <span>QTipstore.</span> All Rights Reserved. Powered by <a
+                                            href="#"><span class="main-color">Theme_Pure.</span></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer-end -->
+
+    <!-- JS here -->
+    <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+    <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+    <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+    <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+    <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+    <script src="{% static 'assets/js/parallax.js' %}"></script>
+    <script src="{% static 'assets/js/backtotop.js' %}"></script>
+    <script src="{% static 'assets/js/nice-select.js' %}"></script>
+    <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+    <script src="{% static 'assets/js/counterup.js' %}"></script>
+    <script src="{% static 'assets/js/ui-slider-range.js' %}"></script>
+    <script src="{% static 'assets/js/wow.js' %}"></script>
+    <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+    <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+
+<script>
+  function addToCart(productVariantId, buttonElement) {
+    // Proceed with adding to the cart
+    $.ajax({
+        type: "GET",
+        url: "/add_to_cart/" + productVariantId + "/",
+        success: function (data) {
+            console.log("Item added to cart successfully");
+
+            // Update the cart count on the page
+            updateCartCount(data.cart_count);
+
+            // Update the button text to 'Added' and disable the button
+            $(buttonElement).text('Added').prop('disabled', true);
+        },
+        error: function (error) {
+            console.error("Error adding item to cart");
+        }
+    });
+}
+
+function updateCartCount(cartCount) {
+    // Update the cart count element on the page
+    $('.cart-count').text(cartCount);
+}
+
+
+
+</script>
+
+    <script>
+        // JavaScript to handle variant selection in the modal
+        $(document).ready(function () {
+            $('.variant-link').on('click', function (e) {
+                e.preventDefault();
+                var variantId = $(this).data('variant-id');
+                var productSlug = '{{ product.name }}';
+                console.log(productSlug);
+                if (!productSlug) {
+                    // If product slug is not available, try to fetch it from the URL
+                    var pathname = window.location.pathname;
+                    var parts = pathname.split('/');
+                    // Find the first part that looks like a slug
+                    for (var i = parts.length - 1; i >= 0; i--) {
+                        if (parts[i].length > 0 && !isNaN(parts[i])) {
+                            // If the part is not a number, use it as the slug
+                            productSlug = parts[i];
+                            break;
+                        }
+                    }
+                }
+                var url = '/product_detail/' + productSlug + '/?variant=' + variantId;
+                window.location.href = url;
+            });
+        });
+    </script>
+
+    <script>
+
+        const rangeInput = document.querySelectorAll(".range-input input")
+        var min_price = document.getElementById('min_price')
+        var max_price = document.getElementById('max_price')
+        priceInput = document.querySelectorAll(".price-input input"),
+            range = document.querySelector(".slider .progress");
+        let priceGap = 1000;
+
+        priceInput.forEach((input) => {
+            input.addEventListener("input", (e) => {
+                let minPrice = parseInt(priceInput[0].value),
+                    maxPrice = parseInt(priceInput[1].value);
+
+                if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+                    if (e.target.className === "input-min") {
+                        rangeInput[0].value = minPrice;
+                        range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+                    } else {
+                        rangeInput[1].value = maxPrice;
+                        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                    }
+                }
+            });
+        });
+
+        rangeInput.forEach((input) => {
+            input.addEventListener("input", (e) => {
+                let minVal = parseInt(rangeInput[0].value),
+                    maxVal = parseInt(rangeInput[1].value);
+
+                if (maxVal - minVal < priceGap) {
+                    if (e.target.className === "range-min") {
+                        rangeInput[0].value = maxVal - priceGap;
+                    } else {
+                        rangeInput[1].value = minVal + priceGap;
+                    }
+                } else {
+                    priceInput[0].value = minVal;
+                    priceInput[1].value = maxVal;
+                    range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+                    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                }
+                min_price.value = minVal
+                max_price.value = maxVal
+            });
+        });
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Wait for the page to fully load
+        window.onload = function () {
+            // Get the subcategory ID from the URL
+            var subcategoryId = getParameterByName('sub_category');
+
+            // Now you can use the subcategoryId in your code
+            document.getElementById('sub_category_url').value = subcategoryId
+        };
+
+
+        function addFilterToUrl() {
+            var currentUrl = window.location.href;
+            var filterParams = '&color=red&brand=Apple'; // Adjust filter values accordingly
+            var newUrl;
+
+            if (currentUrl.includes('?')) {
+                // If the URL already has a query string
+                newUrl = currentUrl + filterParams;
+            } else {
+                // If the URL doesn't have a query string
+                newUrl = currentUrl + '?query_pass=mob' + filterParams;
+            }
+
+            // Update the href attribute of your link
+            document.getElementById('filterLink').href = newUrl;
+            console.log(newUrl)
+        }
+    </script>
+
+</body>
+
+</html>

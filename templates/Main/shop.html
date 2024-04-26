@@ -1,0 +1,909 @@
+{% load static %} {% load product_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>QTipstore</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static 'path/to/jquery-3.6.4.min.js' %}"></script>
+    <script src="{% static 'path/to/jquery-ui.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+
+    <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <style>
+        /* Import Google Font - Poppins */
+        
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+        .wrapper {
+            width: 400px;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 25px 40px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        header p {
+            margin-top: 5px;
+            font-size: 16px;
+        }
+        
+        .price-input {
+            width: 100%;
+            display: flex;
+            margin: 30px 0 35px;
+        }
+        
+        .price-input .field {
+            display: flex;
+            width: 100%;
+            height: 45px;
+            align-items: center;
+        }
+        
+        .field input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            font-size: 19px;
+            margin-left: 12px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #999;
+            -moz-appearance: textfield;
+        }
+        
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+        
+        .price-input .separator {
+            width: 130px;
+            display: flex;
+            font-size: 19px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slider {
+            height: 5px;
+            position: relative;
+            background: #ddd;
+            border-radius: 5px;
+        }
+        
+        .slider .progress {
+            height: 100%;
+            left: 25%;
+            right: 25%;
+            position: absolute;
+            border-radius: 5px;
+            background: #17a2b8;
+        }
+        
+        .range-input {
+            position: relative;
+        }
+        
+        .range-input input {
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            top: -5px;
+            background: none;
+            pointer-events: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            height: 17px;
+            width: 17px;
+            border-radius: 50%;
+            background: #17a2b8;
+            pointer-events: auto;
+            -webkit-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            height: 17px;
+            width: 17px;
+            border: none;
+            border-radius: 50%;
+            background: #17a2b8;
+            pointer-events: auto;
+            -moz-appearance: none;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+        }
+        /* Support */
+        
+        .support-box {
+            top: 2rem;
+            position: relative;
+            bottom: 0;
+            text-align: center;
+            display: block;
+        }
+        
+        .b-btn {
+            color: white;
+            font-weight: bold;
+        }
+        
+        .b-btn.paypal i {
+            color: blue;
+        }
+        
+        .b-btn:hover {
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .b-btn i {
+            font-size: 20px;
+            color: yellow;
+            margin-top: 2rem;
+        }
+        
+        .filter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            /* Add padding for better spacing */
+            border: 1px solid #ddd;
+            /* Add a border to the entire form */
+            border-radius: 8px;
+            /* Add some border-radius for rounded corners */
+        }
+        
+        .filter-section {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            /* Add a border to each section */
+            padding: 10px;
+            /* Add padding for better spacing within sections */
+            border-radius: 4px;
+            /* Add some border-radius for rounded corners */
+        }
+        
+        .checkbox-label {
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .search-input {
+            padding: 8px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .filter-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            /* Add some border-radius for rounded corners */
+        }
+        
+        .color-checkbox {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            /* You can customize the border color */
+        }
+        
+        del {
+            text-decoration: line-through;
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- back to top start -->
+    <div class="progress-wrap">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+        </svg>
+    </div>
+    <!-- back to top end -->
+
+    <!-- header-start -->
+    {% include "includes/header.html" %}
+
+    <!-- header-end -->
+
+    <!-- offcanvas area start -->
+    <div class="offcanvas__area">
+        <div class="offcanvas__wrapper">
+            <div class="offcanvas__close">
+                <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+                    <i class="fal fa-times"></i>
+                </button>
+            </div>
+            <div class="offcanvas__content">
+                <div class="offcanvas__logo mb-40">
+                    <a href="/">
+                        <h1>VCart</h1>
+                    </a>
+                </div>
+
+                <div class="mobile-menu fix"></div>
+                <div class="offcanvas__action">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- offcanvas area end -->
+    <div class="body-overlay"></div>
+    <!-- offcanvas area end -->
+
+    <main>
+
+
+
+        <!-- breadcrumb__area-start -->
+        <section class="breadcrumb__area box-plr-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="breadcrumb__wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>/
+                                    <li class="active">Shop</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb__area-end -->
+
+        <div class="shop-area mb-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4">
+
+                        <form method="get" action="/products/{{ sub_category_.id }}/" class="filter-form">
+                            <!-- Colors Filter -->
+                            <div class="filter-section">
+                                <h4>Colors:</h4>
+                                <div class="filter-options">
+                                    {% for color in unique_colors %}
+                                    <label class="checkbox-label" style="display:flex;justify-content:space-between">
+                                        <div>
+                                            <input type="checkbox" name="color" value="{{ color.color__name }}" {% if color.color__name in selected_colors %}checked{% endif %}>
+                                            {{ color.color__name }}
+                                        </div>
+                                        <span class="color-checkbox" style="background-color: {{ color.color__name }}"></span>
+                                    </label> {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Brands Filter -->
+                            <div class="filter-section">
+                                <h4>Brands:</h4>
+                                <div class="filter-options">
+                                    {% for brand in unique_brands %}
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="brand" value="{{ brand.brand__Brand_name }}" {% if brand.brand__Brand_name in selected_brands %}checked{% endif %}>
+                                        {{ brand.brand__Brand_name }}
+                                    </label> {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Sizes Filter -->
+                            <div class="filter-section">
+                                <h4>Sizes:</h4>
+                                <div class="filter-options">
+                                    {% for size in unique_sizes %}
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="size" value="{{ size.size__name }}" {% if size.size__name in selected_sizes %}checked{% endif %}>
+                                        {{ size.size__name }}
+                                    </label> {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Prices Filter -->
+                            <div class="filter-section">
+                                <h4>Prices:</h4>
+                                <div class="filter-options">
+                                    {% for price_range in price_ranges %}
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="price" value="{{ price_range.label }}">
+                                        {{ price_range.label }}
+                                    </label> {% endfor %}
+                                </div>
+                            </div>
+
+                            <!-- Discount Filter -->
+                            <div class="filter-section">
+                                <h4>Discount:</h4>
+                                <div class="filter-options">
+                                    <select name="discount">
+                                        <option value="">Select Discount Range</option>
+                                        <option value="5-10" {% if selected_discount == "5-10" %}selected{% endif %}>5% to 10%</option>
+                                        <option value="10-20" {% if selected_discount == "10-20" %}selected{% endif %}>10% to 20%</option>
+                                        <option value="20-30" {% if selected_discount == "20-30" %}selected{% endif %}>20% to 30%</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Rating Filter -->
+                            <div class="filter-section">
+                                <h4>Rating:</h4>
+                                <div class="filter-options">
+                                    <select name="rating">
+                                        <option value="">Select Rating Range</option>
+                                        <option value="1-2" {% if selected_rating == "1-2" %}selected{% endif %}>1 to 2 stars</option>
+                                        <option value="2-3" {% if selected_rating == "2-3" %}selected{% endif %}>2 to 3 stars</option>
+                                        <option value="3-4" {% if selected_rating == "3-4" %}selected{% endif %}>3 to 4 stars</option>
+                                        <option value="4-5" {% if selected_rating == "4-5" %}selected{% endif %}>4 to 5 stars</option>
+                                        <!-- Add more options as needed -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="sub_category" value="{{ sub_category_.id }}">
+
+                            <!-- Search Query -->
+                            <input type="text" hidden name="query_pass" value="{{ searched_query }}" placeholder="Enter search query" class="search-input">
+
+                            <!-- Apply Filters Button -->
+                            <button type="submit" class="filter-btn">Apply Filters</button>
+                        </form>
+
+                    </div>
+
+
+
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="shop-banner mb-30">
+                            <div class="banner-image">
+                                <img class="banner-l" src="{% static 'assets/img/banner/sl-banner.jpg' %}" alt="">
+                                <img class="banner-sm" src="{% static 'assets/img/banner/sl-banner-sm.png' %}" alt="">
+                                <div class="banner-content text-center">
+                                    <p class="banner-text mb-30">Hurry Up! <br> Free Shipping All Order Over $99</p>
+                                    <a href="shop.html" class="st-btn-d b-radius">Discover now</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-lists-top">
+                            <div class="product__filter-wrap">
+                                <div class="row align-items-center">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
+                                        <div class="product__filter d-sm-flex align-items-center">
+                                            <div class="product__col">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link active" id="FourCol-tab" data-bs-toggle="tab" data-bs-target="#FourCol" type="button" role="tab" aria-controls="FourCol" aria-selected="true">
+                                                            <i class="fal fa-th"></i>
+                                                        </button>
+                                                    </li>
+                                                    <li class="nav-item" role="presentation">
+                                                        <button class="nav-link" id="FiveCol-tab" data-bs-toggle="tab" data-bs-target="#FiveCol" type="button" role="tab" aria-controls="FiveCol" aria-selected="false">
+                                                            <i class="fal fa-list"></i>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="product__result pl-60">
+                                                <p>Showing {{ products.start_index }}-{% if products.has_next %}{{ products.end_index }}{% else %}{{ products.paginator.count }}{% endif %} of {{ products.paginator.count }} results</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">-->
+                                    <!--    <div-->
+                                    <!--        class="product__filter-right d-flex align-items-center justify-content-md-end">-->
+                                    <!--        <div class="product__sorting product__show-no">-->
+                                    <!--            <select>-->
+                                    <!--                <option>10</option>-->
+                                    <!--                <option>20</option>-->
+                                    <!--                <option>30</option>-->
+                                    <!--                <option>40</option>-->
+                                    <!--            </select>-->
+                                    <!--        </div>-->
+                                    <!--        <div class="product__sorting product__show-position ml-20">-->
+                                    <!--            <select>-->
+                                    <!--                <option>Latest</option>-->
+                                    <!--                <option>New</option>-->
+                                    <!--                <option>Up comeing</option>-->
+                                    <!--            </select>-->
+                                    <!--        </div>-->
+                                    <!--    </div>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-content" id="productGridTabContent">
+                            <div class="tab-pane fade  show active" id="FourCol" role="tabpanel" aria-labelledby="FourCol-tab">
+                                <div class="tp-wrapper">
+                                    <div class="row g-0" id="filteredProducts">
+
+
+                                        {% load product_tags %} {% for i in products %}
+
+                                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                                            <div class="product__item product__item-d" style="width: auto;height: 100%;display: flex;flex-direction: column;justify-content: space-between;">
+                                                <div class="product__thumb fix" style="gap:2px">
+                                                    <div class="product-image w-img">
+                                                        <a href="{% url 'product_detail' slug=i.slug product_id=i.id %}">
+                                                            <img src="{{i.image.url}}" alt="product">
+                                                        </a>
+                                                    </div>
+                                                    <div class="colors-container" style="display:flex;gap:2px;width:100%;justify-content:center;margin-top:5px">
+                                                        {% for variant in i.variants_set.all|slice:":4" %} {% if variant.color %}
+                                                        <div style="border:solid 0.5px black;border-radius:50%;width:1.2rem;height:1.2rem">
+                                                            <div class="color-circle" style="background-color: {{ variant.color.code }};height:1rem;width:1rem;border-radius:50%;margin:1px"></div>
+                                                        </div>
+                                                        {% endif %} {% endfor %} {% if i.variants_set.count > 4 %}
+                                                        <div>
+
+                                                            <a class="color-circle more-colors" href="{% url 'product_detail' slug=i.slug product_id=i.id %}">...more</a>
+                                                        </div>
+                                                        {% endif %}
+                                                    </div>
+
+
+                                                    <div class="product-action">
+                                                        <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
+                                                            <i class="fal fa-eye"></i>
+                                                            <i class="fal fa-eye"></i>
+                                                        </a>
+                                                        <!--<a href="#" class="icon-box icon-box-1">-->
+                                                        <!--    <i class="fal fa-heart"></i>-->
+                                                        <!--    <i class="fal fa-heart"></i>-->
+                                                        <!--</a>-->
+                                                        <!--<a href="#" class="icon-box icon-box-1">-->
+                                                        <!--    <i class="fal fa-layer-group"></i>-->
+                                                        <!--    <i class="fal fa-layer-group"></i>-->
+                                                        <!--</a>-->
+                                                    </div>
+                                                </div>
+                                                <div class="product__content-3">
+                                                    <h6><a href="{% url 'product_detail' slug=i.slug product_id=i.id %}" style="word-wrap: break-word; overflow-wrap: break-word;">{{i.name}}</a></h6>
+                                                    <div class="rating mb-5">
+                                                        <ul>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                            <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                        </ul>
+                                                        <span>(01 review)</span>
+                                                    </div>
+                                                    <div>
+                                                        <del>&#8377;{{i.price|floatformat:0 }}</del>
+                                                    </div>
+                                                    <div class="price mb-10">
+                                                        <span> <span>&#8377;</span>{% calculate_pricetag i.price i.Discount %}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="product__add-cart-s text-center">
+                                                    <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId-{{forloop.counter}}">
+                Quick View
+            </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="FiveCol" role="tabpanel" aria-labelledby="FiveCol-tab">
+                                <div class="tp-wrapper-2">
+                                    {% for variant in product_variants %}
+
+                                    <div class="single-item-pd">
+                                        <div class="row align-items-center">
+                                            <div class="col-xl-9">
+                                                <div class="single-features-item single-features-item-df b-radius mb-20">
+                                                    <div class="row  g-0 align-items-center">
+                                                        <div class="col-md-4">
+                                                            <div class="features-thum">
+                                                                <div class="features-product-image w-img">
+                                                                    <a href="product-details.html"><img src="{% static 'assets/img/product/sm-1.jpg' %}" alt=""></a>
+                                                                </div>
+                                                                <div class="product__offer">
+                                                                    <span class="discount">-15%</span>
+                                                                </div>
+                                                                <div class="product-action">
+                                                                    <a href="#" class="icon-box icon-box-1" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                                        <i class="fal fa-eye"></i>
+                                                                        <i class="fal fa-eye"></i>
+                                                                    </a>
+                                                                    <a href="#" class="icon-box icon-box-1">
+                                                                        <i class="fal fa-heart"></i>
+                                                                        <i class="fal fa-heart"></i>
+                                                                    </a>
+                                                                    <a href="#" class="icon-box icon-box-1">
+                                                                        <i class="fal fa-layer-group"></i>
+                                                                        <i class="fal fa-layer-group"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="product__content product__content-d">
+                                                                <h6><a href="product-details.html">Classic Leather
+                                                                        Backpack Daypack 2022</a></h6>
+                                                                <div class="rating mb-5">
+                                                                    <ul class="rating-d">
+                                                                        <li><a href="#"><i class="fal fa-star"></i></a>
+                                                                        </li>
+                                                                        <li><a href="#"><i class="fal fa-star"></i></a>
+                                                                        </li>
+                                                                        <li><a href="#"><i class="fal fa-star"></i></a>
+                                                                        </li>
+                                                                        <li><a href="#"><i class="fal fa-star"></i></a>
+                                                                        </li>
+                                                                        <li><a href="#"><i class="fal fa-star"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <span>(01 review)</span>
+                                                                </div>
+                                                                <div class="features-des">
+                                                                    <ul>
+                                                                        <li><a href="product-details.html"><i
+                                                                                    class="fas fa-circle"></i> Bass and
+                                                                                Stereo Sound.</a></li>
+                                                                        <li><a href="product-details.html"><i
+                                                                                    class="fas fa-circle"></i> Display
+                                                                                with 3088 x 1440 pixels resolution.</a>
+                                                                        </li>
+                                                                        <li><a href="product-details.html"><i
+                                                                                    class="fas fa-circle"></i> Memory,
+                                                                                Storage &amp; SIM: 12GB RAM, 256GB.</a>
+                                                                        </li>
+                                                                        <li><a href="product-details.html"><i
+                                                                                    class="fas fa-circle"></i> Androi
+                                                                                v10.0 Operating system.</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <div class="product-stock mb-15">
+                                                    <h5>Availability: <span> 940 in stock</span></h5>
+                                                    <h6>$220.00 - <del> $240.00</del></h6>
+                                                </div>
+                                                <div class="stock-btn ">
+                                                    <button type="button" class="cart-btn d-flex mb-10 align-items-center justify-content-center w-100">
+                                                        Add to Cart
+                                                    </button>
+                                                    <button type="button" class="wc-checkout d-flex align-items-center justify-content-center w-100" data-bs-toggle="modal" data-bs-target="#productModalId">
+                                                        Quick View
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% load custom_filters %}
+
+                        <div class="tp-pagination text-center">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="basic-pagination pt-30 pb-30">
+                                        <nav>
+                                            <ul>
+                                                {% for page_num in products.paginator.page_range %}
+                                                <li>
+                                                    {% if page_num == products.number %}
+                                                    <a href="{{ request.path }}?{% if request.GET.urlencode %}{{ request.GET.urlencode }}&{% endif %}page={{ page_num }}" class="active">{{ page_num }}</a> {% else %}
+                                                    <a href="{{ request.path }}?{% if request.GET.urlencode %}{{ request.GET.urlencode }}&{% endif %}page={{ page_num }}">{{ page_num }}</a> {% endif %}
+
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!--                        <div class="tp-pagination text-center">-->
+                        <!--    <div class="row">-->
+                        <!--        <div class="col-xl-12">-->
+                        <!--            <div class="basic-pagination pt-30 pb-30">-->
+                        <!--                <nav>-->
+                        <!--                    <ul>-->
+                        <!--                        {% for page_num in products.paginator.page_range %}-->
+                        <!--                            <li>-->
+                        <!--                                <a href="?{% if request.GET.color %}color={{ request.GET.color }}&{% endif %}{% if request.GET.brand %}brand={{ request.GET.brand }}&{% endif %}{% if request.GET.size %}size={{ request.GET.size }}&{% endif %}sub_category={{ request.GET.sub_category }}&page={{ page_num }}" {% if page_num == products.number %}class="active"{% endif %}>{{ page_num }}</a>-->
+                        <!--                            </li>-->
+                        <!--                        {% endfor %}-->
+                        <!--                    </ul>-->
+                        <!--                </nav>-->
+                        <!--            </div>-->
+                        <!--        </div>-->
+                        <!--    </div>-->
+                        <!--</div>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- shop-area-end -->
+
+        <!-- shop modal start -->
+        {% for i in products %}
+
+
+        <div class="modal fade" id="productModalId-{{forloop.counter}}" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered product__modal" role="document">
+                <div class="modal-content">
+                    <div class="product__modal-wrapper p-relative">
+                        <div class="product__modal-close p-absolute">
+                            <button data-bs-dismiss="modal"><i class="fal fa-times"></i></button>
+                        </div>
+                        <div class="product__modal-inner">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="product__modal-box">
+                                        <div class="tab-content" id="modalTabContent">
+                                            <div class="tab-pane fade show active" id="nav1" role="tabpanel" aria-labelledby="nav1-tab">
+                                                <div class="product__modal-img w-img">
+                                                    <img src="{{i.image.url}}" alt="">
+                                                </div>
+                                            </div>
+
+                                            {% for j in i.product_image_set.all %}
+                                            <div class="tab-pane fade show" id="nav{{j.id}}" role="tabpanel" aria-labelledby="nav{{j.id}}-tab">
+                                                <div class="product__modal-img w-img">
+                                                    <img src="{{j.image_url}}" alt="">
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+
+
+
+                                        </div>
+                                        <ul class="nav nav-tabs" id="modalTab" role="tablist">
+                                            {% for j in i.product_image_set.all %}
+
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="nav{{j.id}}-tab" data-bs-toggle="tab" data-bs-target="#nav{{j.id}}" type="button" role="tab" aria-controls="nav{{j.id}}" aria-selected="true">
+                                                    <img src="{{j.image_url}}" style="height: 8rem;" alt="">
+                                                </button>
+                                            </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                    <div class="product__modal-content">
+                                        <h4><a href="product-details.html">{{i.name|capfirst}}</a></h4>
+                                        <div class="product__review d-sm-flex">
+                                            <div class="rating rating__shop mb-10 mr-30">
+                                                <ul>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fal fa-star"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product__add-review mb-15">
+                                                <span>01 review</span>
+                                            </div>
+                                        </div>
+                                        <div class="product__price">
+                                            <span> &#8377 {{i.price}}</span>
+                                        </div>
+                                        <div class="product__modal-des mt-20 mb-15" style="height: 15rem;overflow-y: scroll;">
+                                            <ul>
+
+                                                <!-- <li>{{ i.Product_info|safe }}</li> -->
+                                                <li>{{ i.Product_info|safe }}</li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="product__stock mb-20">
+                                            <span class="mr-10">Availability :</span>
+                                            <span>{{i.Availability}} in stock</span>
+                                        </div>
+                                        <div class="product__modal-form">
+                                            <form action="#">
+                                                <div class="pro-quan-area d-lg-flex align-items-center">
+                                                    <div class="product-quantity mr-20 mb-25">
+                                                        <div class="cart-plus-minus p-relative"><input type="text" value="1" /></div>
+                                                    </div>
+                                                    <div class="pro-cart-btn mb-25">
+                                                        <a class="cart-btn" href="{% url 'cart_add_shop' i.slug %}" type="submit">Add to Catrssxxxxxxx</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="product__stock mb-30">
+                                            <ul>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="sku mr-10">SKU:</span>
+                                                        <span>Samsung C49J89: £875, Debenhams Plus</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="cat mr-10">Categories:</span>
+                                                        <span>
+                                                            <cus>{{i.Category}}</cus>
+                                                        </span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <span class="tag mr-10">Tags:</span>
+                                                        <span>{{i.Tags}}</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+
+
+
+
+        <!-- shop modal end -->
+
+    </main>
+
+    <!-- footer-start -->
+    {% include 'includes/footer.html' %}
+    <!-- footer-end -->
+
+    <!-- JS here -->
+    <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+    <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+    <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+    <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+    <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+    <script src="{% static 'assets/js/parallax.js' %}"></script>
+    <script src="{% static 'assets/js/backtotop.js' %}"></script>
+    <script src="{% static 'assets/js/nice-select.js' %}"></script>
+    <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+    <script src="{% static 'assets/js/counterup.js' %}"></script>
+    <script src="{% static 'assets/js/ui-slider-range.js' %}"></script>
+    <script src="{% static 'assets/js/wow.js' %}"></script>
+    <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+    <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+    <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <script>
+        const rangeInput = document.querySelectorAll(".range-input input")
+        var min_price = document.getElementById('min_price')
+        var max_price = document.getElementById('max_price')
+        priceInput = document.querySelectorAll(".price-input input"),
+            range = document.querySelector(".slider .progress");
+        let priceGap = 1000;
+
+        priceInput.forEach((input) => {
+            input.addEventListener("input", (e) => {
+                let minPrice = parseInt(priceInput[0].value),
+                    maxPrice = parseInt(priceInput[1].value);
+
+                if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+                    if (e.target.className === "input-min") {
+                        rangeInput[0].value = minPrice;
+                        range.style.left = (minPrice / rangeInput[0].max) * 100 + "%";
+                    } else {
+                        rangeInput[1].value = maxPrice;
+                        range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+                    }
+                }
+            });
+        });
+
+        rangeInput.forEach((input) => {
+            input.addEventListener("input", (e) => {
+                let minVal = parseInt(rangeInput[0].value),
+                    maxVal = parseInt(rangeInput[1].value);
+
+                if (maxVal - minVal < priceGap) {
+                    if (e.target.className === "range-min") {
+                        rangeInput[0].value = maxVal - priceGap;
+                    } else {
+                        rangeInput[1].value = minVal + priceGap;
+                    }
+                } else {
+                    priceInput[0].value = minVal;
+                    priceInput[1].value = maxVal;
+                    range.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+                    range.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+                }
+                min_price.value = minVal
+                max_price.value = maxVal
+            });
+        });
+
+
+
+
+
+
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        window.onload = function() {
+            var subcategoryId = getParameterByName('sub_category');
+
+            // Now you can use the subcategoryId in your code
+            console.log('Subcategory ID:', subcategoryId);
+            document.getElementById('sub_category_url').value = subcategoryId
+        };
+    </script>
+
+</body>
+
+</html>

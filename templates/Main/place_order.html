@@ -1,0 +1,91 @@
+{% load static %}
+{% load product_tags %}
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>VStore</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Place favicon.ico in the root directory -->
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.png' %}">
+
+   </head>
+   <body>
+
+      <main>
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <form action="{% url 'payment_success' %}" method="POST">
+           <input type="hidden" name="order_id" value="{{ order_id }}">z
+           <script>
+            var options = {
+                "key": "{{ settings.RAZORPAY_TEST_KEY_ID }}",
+                "amount": totalAmount, // Corrected variable name
+                "currency": "INR",
+                "name": "vindus",
+                "description": "Payment Description",
+                "order_id": "{{ order_id }}",
+                "handler": function(response) {
+                    // Handle the payment success response
+                    // You can submit the form or redirect to a success page
+                    document.forms[0].submit();
+                },
+                "prefill": {
+                    "name": "usha",
+                    "email": "john@example.com",
+                    "contact": "9876543210"
+                }
+            };
+            var rzp = new Razorpay(options);
+            rzp.open();
+        </script>
+
+
+
+        <button id="rzp-button1">Pay with Razorpay</button>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    var options = {
+        "key": "rzp_test_KdiESTDcHPC74B", // Enter the Key ID generated from the Dashboard
+        "amount": "{{ total_amount }}", // Use the total_amount variable passed from the view
+        "currency": "INR",
+        "name": "Acme Corp",
+        "description": "Test Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": "{{ order_id }}", //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        "handler": function(response) {
+            // Handle the payment success response
+            // You can submit the form or redirect to a success page
+            document.forms[0].submit();
+        },
+        "prefill": {
+            "name": "Gaurav Kumar",
+            "email": "gaurav.kumar@example.com",
+            "contact": "9000090000"
+        },
+        "notes": {
+            "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+            "color": "#3399cc"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.on('payment.failed', function (response){
+        // Handle payment failure
+    });
+    document.getElementById('rzp-button1').onclick = function(e){
+        rzp1.open();
+        e.preventDefault();
+    }
+    </script>
+    
+        
+        </form>
+
+
+      </main>
+
+
+</html>

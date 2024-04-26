@@ -1,0 +1,381 @@
+{% load static %}
+{% load product_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+
+<head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>VStore</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Place favicon.ico in the root directory -->
+
+      <!-- CSS here -->
+      <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+   </head>
+   <body>
+
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+    <!-- header-start -->
+    <header class="header d-blue-bg">
+        <div class="header-top">
+            <div class="container 0">
+                <div class="header-inner">
+                    <div class="row align-items-center">
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="header-inner-start">
+
+                                <div class="support d-none d-sm-block">
+                                    <p>Need Help? <a href="tel:+91 9912643756">+91 9912643756</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-5 d-none d-lg-block">
+                            <div class="header-inner-end text-md-end">
+                                <div class="ovic-menu-wrapper ovic-menu-wrapper-2">
+                                    <ul>
+                                        <li><a href="/about/">About Us</a></li>
+                                        <li><a href="contact.html">Order Tracking</a></li>
+                                        <li><a href="/contact/">Contact Us</a></li>
+                                        <li><a href="faq.html">FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-mid">
+            <div class="container">
+                <div class="heade-mid-inner">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4">
+                            <div class="header__info header__info-2">
+                                <div class="logo logo-3">
+                                    <a href="/" class="logo-image"><h1 style="color: white;">VStore.in</h1></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-4 d-none d-lg-block">
+                            <div class="header__search">
+                                <form action="#">
+                                    <div class="header__search-box">
+                                        <input class="search-input search-input-2" type="text" placeholder="I'm shopping for...">
+                                        <button class="button button-2 button-3" type="submit"><i class="far fa-search"></i></button>
+                                    </div>
+                                    <div class="header__search-cat">
+                                        <select>
+                                            <option>All Categories</option>
+                                            <option>Best Seller Products</option>
+                                            <option>Top 10 Offers</option>
+                                            <option>New Arrivals</option>
+                                            <option>Phones &amp; Tablets</option>
+                                            <option>Electronics &amp; Digital</option>
+                                            <option>Fashion &amp; Clothings</option>
+                                            <option>Jewelry &amp; Watches</option>
+                                            <option>Health &amp; Beauty</option>
+                                            <option>Sound &amp; Speakers</option>
+                                            <option>TV &amp; Audio</option>
+                                            <option>Computers</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-5 col-md-8 col-sm-8">
+                            <div class="header-action" style="display:flex;justify-content:space-around">
+
+                                <div class="block-cart action side-menu-btn offcanvas-toggle-btn">
+                                    <a class="icon-link icon-link-2">
+                                    <i class="flaticon-shopping-bag "></i>
+                                    <span class="count count-2">{{request.session.cart|length}}</span>
+
+                                    </a>
+                                    <div class="cart">
+                                        <div class="cart__mini">
+                                            <ul>
+                                                <li>
+                                                  <div class="cart__title">
+                                                    <h4>Your Cart</h4>
+                                                    <span>(1 Item in Cart)</span>
+                                                  </div>
+                                                </li>
+                                                <li>
+                                                  <div class="cart__item d-flex justify-content-between align-items-center">
+                                                    <div class="cart__inner d-flex">
+                                                      <div class="cart__thumb">
+                                                        <a href="product-details.html">
+                                                          <img src="{% static 'assets/img/cart/20.jpg' %}" alt="">
+                                                        </a>
+                                                      </div>
+                                                      <div class="cart__details">
+                                                        <h6><a href="product-details.html"> Samsung C49J89: £875, Debenhams Plus  </a></h6>
+                                                        <div class="cart__price">
+                                                          <span>$255.00</span>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="cart__del">
+                                                        <a href="#"><i class="fal fa-times"></i></a>
+                                                    </div>
+                                                  </div>
+                                                </li>
+                                                <li>
+                                                  <div class="cart__sub d-flex justify-content-between align-items-center">
+                                                    <h6>Subtotal</h6>
+                                                    <span class="cart__sub-total">$255.00</span>
+                                                  </div>
+                                                </li>
+                                                <li>
+                                                    <a href="/cart/cart-detail/" class="wc-cart mb-10">View cart</a>
+                                                    <a href="checkout.html" class="wc-checkout">Checkout</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% if user.is_authenticated %}
+
+                                <div class="block-userlink">
+                                    <a class="icon-link" href="{% url 'my_account' %}">
+                                        <i class="flaticon-user"></i>
+                                        <span class="text">
+                                            <span class="sub">{{user.username}} </span>
+                                            My Account </span>
+                                        </a>
+                                    </div>
+
+                                {% else %}
+                                <div class="block-userlink">
+                                    <a class="icon-link" href="{% url 'my_account' %}">
+                                        <i class="flaticon-user"></i>
+                                        <span class="text">
+                                            <span class="sub">Login </span>
+                                            My Account </span>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header__bottom d-none d-lg-block">
+            <div class="container">
+                <div class="box-items-inner pt-10 pb-10">
+
+                    <div class="box-item">
+                        <a href="shop.html">
+                            <i class="fal fa-router"></i>
+                        Digitals <br> & Electronics
+                        </a>
+                    </div>
+                    <div class="box-item">
+                        <a href="shop.html">
+                            <i class="fal fa-webcam"></i>
+                        Camera <br> & Accesories
+                        </a>
+                    </div>
+                    <div class="box-item">
+                        <a href="shop.html">
+                            <i class="fal fa-bed-alt"></i>
+                        Decor <br> & Furniture
+                        </a>
+                    </div>
+                    <div class="box-item">
+                        <a href="shop.html">
+                            <i class="fal fa-tshirt"></i>
+                        Fashion <br> & Clotheing
+                        </a>
+                    </div>
+                    <div class="box-item d-lg-none">
+                        <a href="shop.html">
+                            <i class="fal fa-hat-chef"></i>
+                        Garden <br> & Home Kitchen
+                        </a>
+                    </div>
+                    <div class="box-item d-lg-none d-xl-block">
+                        <a href="shop.html">
+                            <i class="fal fa-speaker"></i>
+                        Audio <br> & Headphones
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </header>
+     <!-- header-end -->
+
+    <!-- offcanvas area start -->
+    <div class="offcanvas__area">
+        <div class="offcanvas__wrapper">
+        <div class="offcanvas__close">
+            <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+                <i class="fal fa-times"></i>
+            </button>
+        </div>
+        <div class="offcanvas__content">
+            <div class="offcanvas__logo mb-40">
+                <a href="/">
+                    <h1>VCart</h1>
+                </a>
+            </div>
+            <div class="offcanvas__search mb-25">
+                {% if request.session.cart|length < 1 %}
+                <h4 style="text-align: center;">Your Cart is empty</h4>
+                {% else %}
+                {% for key,value in request.session.cart.items %}
+                <div class="cart__item d-flex justify-content-between align-items-center">
+                                                    <div class="cart__inner d-flex">
+                                                      <div class="cart__thumb">
+                                                        <a href="product-details.html">
+                                                          <img src="{{value.image}}" alt="">
+                                                        </a>
+                                                      </div>
+                                                      <div class="cart__details">
+                                                        <h6><a href="{{value.get_absolute_url}}"> {{value.name}}</a></h6>
+                                                        <div class="cart__price">
+                                                          <span>&#8377;{{value.price|floatformat:0}}</span>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="cart__del">
+                                                        <a href="{% url 'item_clear' key  %}"><i class="fal fa-times"></i></a>
+                                                    </div>
+                                                  </div>
+                {% endfor %}
+                <div>
+                    <li>
+                                                    <a href="/cart/cart-detail/" class="wc-cart mb-10">View cart</a>
+                                                    <a href="/checkout/" class="wc-checkout">Checkout</a>
+                                                </li>
+                </div>
+                {% endif %}
+            </div>
+            <div class="mobile-menu fix"></div>
+            <div class="offcanvas__action">
+
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- offcanvas area end -->
+    <div class="body-overlay"></div>
+    <!-- offcanvas area end -->
+
+    <main>
+        <!-- breadcrumb__area-start -->
+        <section class="breadcrumb__area box-plr-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="breadcrumb__wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="/">Home</a></li>/
+                                  <li class="active">Shop</li>
+                                </ol>
+                              </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb__area-end -->
+
+        <!-- shop-area-start -->
+        <div class="shop-area mb-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8 w-100">
+
+                        <section class="banner__area light-bg-s pt-40 pb-10">
+                            <div class="container custom-conatiner">
+                                <div class="row" >
+                                    <form action="#" style="display: grid;grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));gap:1rem">
+
+
+
+        {% for i in category %}
+        <div class="col-xl-4 col-lg-4 col-md-12 w-auto">
+        <div class="banner__item p-relative w-img mb-30">
+            <div class="banner__img b-radius-2">
+                <a href="/sub_cats/?categories={{i.id}}"><img src="{% static 'assets/img/banner/banner-14.jpg' %}" alt=""></a>
+            </div>
+            <div class="banner__content banner__content-2">
+                <h6><a href="/sub_cats/?categories={{i.id}}" id="{{i.id}}">{{i.name|capfirst}}</a></h6>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</form>
+
+                                </div>
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- shop-area-end -->
+
+
+    </main>
+
+    <!-- footer-start -->
+    {% include 'includes/footer.html' %}
+    <!-- footer-end -->
+
+      <!-- JS here -->
+      <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+      <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+      <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+      <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+      <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+      <script src="{% static 'assets/js/parallax.js' %}"></script>
+      <script src="{% static 'assets/js/backtotop.js' %}"></script>
+      <script src="{% static 'assets/js/nice-select.js' %}"></script>
+      <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+      <script src="{% static 'assets/js/counterup.js' %}"></script>
+      <script src="{% static 'assets/js/ui-slider-range.js' %}"></script>
+      <script src="{% static 'assets/js/wow.js' %}"></script>
+      <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+      <script src="{% static 'assets/js/main.js' %}"></script>
+
+   </body>
+</html>

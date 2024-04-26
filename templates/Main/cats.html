@@ -1,0 +1,205 @@
+{% load static %}
+{% load product_tags %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="zxx">
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>QTiptore</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- CSS here -->
+      <link rel="stylesheet" href="{% static 'assets/css/preloader.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/owl-carousel.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/backtotop.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/ui-range-slider.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/flaticon/flaticon.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/font-awesome-pro.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/default.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+   </head>
+   <style>
+       a{
+    text-decoration: none;
+}
+   </style>
+   <body>
+
+      <!-- back to top start -->
+      <div class="progress-wrap">
+         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+         </svg>
+      </div>
+      <!-- back to top end -->
+
+    <!-- header-start -->
+    {% include "includes/header.html" %}
+    <!-- header-end -->
+
+    <!-- offcanvas area start -->
+    <div class="offcanvas__area">
+        <div class="offcanvas__wrapper">
+        <div class="offcanvas__close">
+            <button class="offcanvas__close-btn" id="offcanvas__close-btn">
+                <i class="fal fa-times"></i>
+            </button>
+        </div>
+        <div class="offcanvas__content">
+            <div class="offcanvas__logo mb-40">
+                <a href="/">
+                    <h1>VCart</h1>
+                </a>
+            </div>
+            <div class="offcanvas__search mb-25">
+                {% if request.session.cart|length < 1 %}
+                <h4 style="text-align: center;">Your Cart is empty</h4>
+                {% else %}
+                {% for key,value in request.session.cart.items %}
+                <div class="cart__item d-flex justify-content-between align-items-center">
+                                                    <div class="cart__inner d-flex">
+                                                      <div class="cart__thumb">
+                                                        <a href="product-details.html">
+                                                          <img src="{{value.image}}" alt="">
+                                                        </a>
+                                                      </div>
+                                                      <div class="cart__details">
+                                                        <h6><a href="{{value.get_absolute_url}}"> {{value.name}}</a></h6>
+                                                        <div class="cart__price">
+                                                          <span>&#8377;{{value.price|floatformat:0}}</span>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="cart__del">
+                                                        <a href="{% url 'item_clear' key  %}"><i class="fal fa-times"></i></a>
+                                                    </div>
+                                                  </div>
+                {% endfor %}
+                <div>
+                    <li>
+                                                    <a href="/cart/cart-detail/" class="wc-cart mb-10">View cart</a>
+                                                    <a href="/checkout/" class="wc-checkout">Checkout</a>
+                                                </li>
+                </div>
+                {% endif %}
+            </div>
+            <div class="mobile-menu fix"></div>
+            <div class="offcanvas__action">
+
+            </div>
+        </div>
+        </div>
+    </div>
+    <!-- offcanvas area end -->
+    <div class="body-overlay"></div>
+    <!-- offcanvas area end -->
+
+    <main>
+        <!-- breadcrumb__area-start -->
+        <section class="breadcrumb__area box-plr-75">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <div class="breadcrumb__wrapper">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="/">Home</a></li>/
+                                  <li class="active">Shop</li>
+                                </ol>
+                              </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- breadcrumb__area-end -->
+
+        <!-- shop-area-start -->
+        <div class="shop-area mb-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8 w-100">
+
+                        <section class="banner__area light-bg-s pt-40 pb-10">
+                            <div class="container custom-conatiner">
+                                <div class="row" >
+                                    <form action="#" style="display: flex;flex-direction: column;">
+{% load custom_tags %}
+
+        {% for main_cat in main_category %}
+    <div>
+        <h2>{{ main_cat.name }}</h2>
+    </div>
+    <div class="row">
+                    {% for category in main_cat.categorie_set.all %}
+
+                    <div class="col-xl-2 col-lg-3 col-md-4">
+                        <div class="categories__item p-relative w-img mb-30">
+                            <div class="categories__img b-radius-2">
+                                <a href="/sub_cats/?categories={{category.id}}"><img src="{{category.image}}" alt=""></a>
+                            </div>
+                            <div class="categories__content">
+                                <h6><a href="/sub_cats/?categories={{category.id}}">{{category.name}}</a></h6>
+                                <!--<p>(7 Products)</p>-->
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+{% endfor %}
+
+
+
+
+
+</form>
+
+                                </div>
+                            </div>
+                        </section>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- shop-area-end -->
+
+    </main>
+
+    <!-- footer-start -->
+    {% include 'includes/footer.html' %}
+    <!-- footer-end -->
+
+      <!-- JS here -->
+      <script src="{% static 'assets/js/vendor/jquery.js' %}"></script>
+      <script src="{% static 'assets/js/vendor/waypoints.js' %}"></script>
+      <script src="{% static 'assets/js/bootstrap-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/meanmenu.js' %}"></script>
+      <script src="{% static 'assets/js/swiper-bundle.js' %}"></script>
+      <script src="{% static 'assets/js/tweenmax.js' %}"></script>
+      <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
+      <script src="{% static 'assets/js/magnific-popup.js' %}"></script>
+      <script src="{% static 'assets/js/parallax.js' %}"></script>
+      <script src="{% static 'assets/js/backtotop.js' %}"></script>
+      <script src="{% static 'assets/js/nice-select.js' %}"></script>
+      <script src="{% static 'assets/js/countdown.min.js' %}"></script>
+      <script src="{% static 'assets/js/counterup.js' %}"></script>
+      <script src="{% static 'assets/js/ui-slider-range.js' %}"></script>
+      <script src="{% static 'assets/js/wow.js' %}"></script>
+      <script src="{% static 'assets/js/isotope-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/imagesloaded-pkgd.js' %}"></script>
+      <script src="{% static 'assets/js/ajax-form.js' %}"></script>
+      <script src="{% static 'assets/js/main.js' %}"></script>
+
+   </body>
+</html>
